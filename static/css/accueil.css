@@ -1,4 +1,25 @@
-.redtitle {
-    color: red;
+#Card {
+    display: flex; 
+    height: 450px;
+    width: 400px;
+    background-color: green;
+    flex-direction: column;
 }
 
+.Logo {
+    height: 50px;
+    width: 50px;
+}
+
+.ArtistName {
+    text-align: center;
+    background-color: purple;
+}
+
+
+#BottomCard {
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
