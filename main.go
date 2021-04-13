@@ -2,7 +2,7 @@ package main
 
 import (
 	"html/template"
-	"log"
+
 	"net/http"
 )
 
@@ -14,6 +14,8 @@ func main() {
 	//http.HandleFunc("/", route)
 	http.HandleFunc("/", accueil)
 	http.HandleFunc("/test", test)
+	http.HandleFunc("/push", push)
+
 	http.ListenAndServe(":8000", nil)
 }
 
@@ -38,10 +40,19 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 }*/
 
 func test(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/test.html")
+	custTemplate, err := template.ParseFiles("./templates/Test.html")
 
 	if err != nil {
-		log.Fatal(err)
+
+	}
+	err = custTemplate.Execute(w, nil)
+}
+
+func push(w http.ResponseWriter, r *http.Request) {
+	custTemplate, err := template.ParseFiles("./templates/push.html")
+
+	if err != nil {
+
 	}
 	err = custTemplate.Execute(w, nil)
 }
