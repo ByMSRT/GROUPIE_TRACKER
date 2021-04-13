@@ -40,7 +40,7 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 }*/
 
 func test(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/Test.html")
+	custTemplate, err := template.ParseFiles("./templates/test.html")
 
 	if err != nil {
 
