@@ -23,8 +23,8 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	err = custTemplate.Execute(w, nil)
 }
 
-func Push(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/push.html")
+func Map(w http.ResponseWriter, r *http.Request) {
+	custTemplate, err := template.ParseFiles("./templates/map.html")
 
 	if err != nil {
 
