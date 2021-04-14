@@ -1,31 +1,31 @@
 package main
 
 import (
-	"html/template"
-
+	"fmt"
 	"net/http"
+
+	controller "./controller"
 )
 
-var t *template.Template
-
 func main() {
+
+	colorGreen := "\033[32m"
+	colorBlue := "\033[34m"
+	colorYellow := "\033[33m"
+
+	fmt.Println(string(colorBlue), "[SERVER_INFO] Starting local Server...")
+
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	//http.HandleFunc("/", route)
-	http.HandleFunc("/", accueil)
-	http.HandleFunc("/test", test)
-	http.HandleFunc("/push", push)
+	http.HandleFunc("/", controller.Accueil)
+	http.HandleFunc("/valider", controller.Test)
+	http.HandleFunc("/push", controller.Push)
 
+	fmt.Println(string(colorGreen), "[SERVER_READY] on http://localhost:8000 ✅ ")
+	fmt.Println(string(colorYellow), "[SERVER_INFO] To stop the program : Ctrl + c")
 	http.ListenAndServe(":8000", nil)
-}
-
-func accueil(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/accueil.html")
-
-	if err != nil {
-
-	}
-	err = custTemplate.Execute(w, nil)
 
 }
 
@@ -38,21 +38,3 @@ func accueil(w http.ResponseWriter, r *http.Request) {
         t.Execute(w, nil)
     }
 }*/
-
-func test(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/test.html")
-
-	if err != nil {
-
-	}
-	err = custTemplate.Execute(w, nil)
-}
-
-func push(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/push.html")
-
-	if err != nil {
-
-	}
-	err = custTemplate.Execute(w, nil)
-}
