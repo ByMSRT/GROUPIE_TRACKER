@@ -6,7 +6,7 @@ import (
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/accueil.html")
+	custTemplate, err := template.ParseFiles("./templates/accueil.html", "./templates/navigation.html")
 
 	if err != nil {
 
@@ -15,7 +15,7 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 }
 
 func Test(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/test.html")
+	custTemplate, err := template.ParseFiles("./templates/test.html", "./templates/navigation.html")
 
 	if err != nil {
 
@@ -24,7 +24,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 }
 
 func Map(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/map.html")
+	custTemplate, err := template.ParseFiles("./templates/map.html", "./templates/navigation.html")
 
 	if err != nil {
 
