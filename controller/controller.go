@@ -31,3 +31,12 @@ func Map(w http.ResponseWriter, r *http.Request) {
 	}
 	err = custTemplate.Execute(w, nil)
 }
+
+func Search(w http.ResponseWriter, r *http.Request) {
+	custTemplate, err := template.ParseFiles("./templates/search.html")
+
+	if err != nil {
+
+	}
+	err = custTemplate.Execute(w, nil)
+}
