@@ -1,5 +1,6 @@
 const search = document.getElementById('search');
-const matchList = document.getElementById('match-list');
+const matchList = document.getElementById('card-data');
+
 
 const api_artists = "https://cors-anywhere.herokuapp.com/https://groupietrackers.herokuapp.com/api/"
 
@@ -40,17 +41,33 @@ const searchStates = async searchText => {
 const outputHtml = (matches, matches2) => {
     if (matches.length > 0) {
         const html = matches.map(match => `
-        <div class="match__List">
-        <h4>${match.name} - ${match.creationDate} - ${match.members[0]} - ${match.firstAlbum}
+        <div class="card" id="card">
+            <div class="card-header" id="card-header">
+                <img src="${match.image}" alt="">
+            </div>
+                <div class="card-body" id="card-body">
+                    <ul>
+                        <li><h4>Nom :</h4>${match.name}</li>
+                        <br>
+                        <li><h4>Date de création :</h4>${match.creationDate}</li>
+                        <br>
+                        <li><h4>Membres :</h4>${match.members[0]}</li>
+                        <br>
+                        <li><h4>Premier album :</h4>${match.firstAlbum}</li>
+                    </ul>
+                    <a href="#" class="btn">Read more</a>
+                </div>
+        </div>
+        
         
         `).join('');
 
-        const html2 = matches2.map(match2 => `
+        /* const html2 = matches2.map(match2 => `
         ${match2.locations[0]}</h4>
-        </div>
-        `).join('');
+        </>
+        `).join(''); */
 
-        let finalhtml = html + html2;
+        let finalhtml = html /* + html2 */ ;
         console.log(finalhtml)
         matchList.innerHTML = finalhtml;
     }

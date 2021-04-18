@@ -28,7 +28,4 @@ func main() {
 	fmt.Println(string(colorYellow), "[SERVER_INFO] : To stop the program : Ctrl + c")
 	http.ListenAndServe(":8000", nil)
 
-	
-
 }
-

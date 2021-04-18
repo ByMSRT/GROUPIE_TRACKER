@@ -6,7 +6,7 @@ import (
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/accueil.html", "./templates/navigation.html")
+	custTemplate, err := template.ParseFiles("./templates/accueilv2.html")
 
 	if err != nil {
 
@@ -33,7 +33,7 @@ func Map(w http.ResponseWriter, r *http.Request) {
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/search.html")
+	custTemplate, err := template.ParseFiles("./templates/searchv2.html")
 
 	if err != nil {
 
