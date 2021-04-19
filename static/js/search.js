@@ -59,7 +59,6 @@ const outputHtml = (matches, matches2) => {
                 </div>
         </div>
         
-        
         `).join('');
 
         /* const html2 = matches2.map(match2 => `
