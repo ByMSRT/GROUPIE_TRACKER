@@ -7,6 +7,8 @@ const api_artists = "https://cors-anywhere.herokuapp.com/https://groupietrackers
 const artist = "artists"
 const location_ = "locations"
 
+
+
 const searchStates = async searchText => {
     const res_artist = await fetch(api_artists + artist);
     const res_location = await fetch(api_artists + location_);
@@ -55,7 +57,13 @@ const outputHtml = (matches, matches2) => {
                         <br>
                         <li><h4>Premier album :</h4>${match.firstAlbum}</li>
                     </ul>
-                    <a href="#" class="btn">Read more</a>
+                    <div class="popup-header-cont">
+                        <h3>${match.name}</h3>
+                    </div>
+                    <div class="read-more-cont">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, at et natus, velit neque repudiandae quidem a eum voluptas officiis in quod recusandae totam labore eius quibusdam ipsam culpa magni.</p>
+                    </div>
+                    <button class="btn" type="button">Voir plus ...</button>
                 </div>
         </div>
         
@@ -74,3 +82,30 @@ const outputHtml = (matches, matches2) => {
 
 
 search.addEventListener('input', () => searchStates(search.value))
+
+const cardData = document.querySelector(".row");
+const popup = document.querySelector(".popup-box");
+const popupCloseBtn = popup.querySelector(".popup-close-btn")
+
+cardData.addEventListener("click", function(event) {
+    if (event.target.tagName.toLowerCase() == "button") {
+        const item = event.target.parentElement;
+        const h3 = item.querySelector(".popup-header-cont").innerHTML;
+        const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+        popup.querySelector(".popup-header").innerHTML = h3;
+        popup.querySelector(".popup-body").innerHTML = readMoreCont
+        popupBox();
+    }
+})
+
+popupCloseBtn.addEventListener("click", popupBox);
+
+popup.addEventListener("click", function(event) {
+    if (event.target == popup) {
+        popupBox();
+    }
+})
+
+function popupBox() {
+    popup.classList.toggle("open");
+}
