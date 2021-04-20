@@ -18,8 +18,15 @@ const searchStates = async searchText => {
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        return state.name.match(regex) || (state.creationDate).toString().match(regex) || state.members[0].match(regex) || (state.firstAlbum).toString().match(regex)
 
+        let allMembers = ""
+        for (let index = 0; index < state.members.length; index++) {
+            allMembers += state.members[index] + " " 
+        }
+        console.log(allMembers)
+        let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex)|| allMembers || (state.firstAlbum).toString().match(regex)
+        return resultOfMatches
+        
     });
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -53,7 +60,7 @@ const outputHtml = (matches, matches2) => {
                         <br>
                         <li><h4>Date de création :</h4>${match.creationDate}</li>
                         <br>
-                        <li><h4>Membres :</h4>${match.members[0]}</li>
+                        <li><h4>Membres :</h4>${match.members}</li>
                         <br>
                         <li><h4>Premier album :</h4>${match.firstAlbum}</li>
                     </ul>
@@ -75,7 +82,7 @@ const outputHtml = (matches, matches2) => {
         `).join(''); */
 
         let finalhtml = html /* + html2 */ ;
-        console.log(finalhtml)
+        //console.log(finalhtml)
         matchList.innerHTML = finalhtml;
     }
 }
