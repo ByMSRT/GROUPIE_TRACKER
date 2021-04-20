@@ -1,39 +1,10 @@
-// function initMap() {
-//     const uluru = { lat: 47.205617056212475, lng: -1.539378717397206 };
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 4,
-//         center: uluru
-//     });
+function Valeur() {
+  var city = document.getElementById("City").value
+  var country = document.getElementById("Country").value
+  document.getElementById("TheMap").src = "https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=" + city + "%2C%20" + country + "+(Geocoding)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed"
+  // document.getElementById("TheMap").src = "https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Nantes%2C%20France+(Geocoding)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed"
+  console.log(document.getElementById("TheMap").src)
+  console.log(city)
+  console.log(country)
+}
 
-//     const marker = new google.maps.Marker({
-//         position: uluru,
-//         map: map,
-//     });
-
-// }
-
-function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 8,
-      center: { lat: -34.397, lng: 150.644 },
-    });
-    const geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-      geocodeAddress(geocoder, map);
-    });
-  }
-  
-  function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
-    geocoder.geocode({ address: address }, (results, status) => {
-      if (status === "OK") {
-        resultsMap.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map: resultsMap,
-          position: results[0].geometry.location,
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
