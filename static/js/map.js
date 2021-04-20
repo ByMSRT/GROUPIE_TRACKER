@@ -1,9 +1,16 @@
 function initMap() {
+    let initialPlace = { lat: 47.205389240386936, lng: -1.539540743860519 }
     // Définit une map qui pointe sur Ynov Nantes
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
-        center: { lat: 47.205389240386936, lng: -1.539540743860519 },
+        center: initialPlace,
     });
+
+    new google.map.Marker({
+        position: initialPlace,
+        title : document.getElementById("address").value
+    })
+
     const geocoder = new google.maps.Geocoder();
 
     // Evènement qui va pointer sur un lieu si il y a un click
