@@ -18,8 +18,18 @@ const searchStates = async searchText => {
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        return state.name.match(regex) || (state.creationDate).toString().match(regex) || state.members[0].match(regex) || (state.firstAlbum).toString().match(regex)
 
+        let allMembers = document.createElement('ul')
+        
+        for (let index = 0; index < state.members.length; index++) {
+            let member = document.createElement('li')
+            member.append(state.members[index])
+            allMembers.appendChild(member)
+        }
+        console.log(allMembers)
+        let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex)|| allMembers || (state.firstAlbum).toString().match(regex)
+        return resultOfMatches
+        
     });
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -41,6 +51,7 @@ const searchStates = async searchText => {
 }
 
 const outputHtml = (matches, matches2) => {
+
     if (matches.length > 0) {
         const html = matches.map(match => `
         <div class="card" id="card">
@@ -49,13 +60,13 @@ const outputHtml = (matches, matches2) => {
             </div>
                 <div class="card-body" id="card-body">
                     <ul>
-                        <li><h4>Nom :</h4>${match.name}</li>
+                        <li><h4>Nom :</h4><br>${match.name}</li>
                         <br>
-                        <li><h4>Date de création :</h4>${match.creationDate}</li>
+                        <li><h4>Date de création :</h4><br>${match.creationDate}</li>
                         <br>
-                        <li><h4>Membres :</h4>${match.members[0]}</li>
+                        <li><h4>Membres :</h4><br>${match.members}</li>
                         <br>
-                        <li><h4>Premier album :</h4>${match.firstAlbum}</li>
+                        <li><h4>Premier album :</h4><br>${match.firstAlbum}</li>
                     </ul>
                     <div class="popup-header-cont">
                         <h3>${match.name}</h3>
@@ -75,7 +86,7 @@ const outputHtml = (matches, matches2) => {
         `).join(''); */
 
         let finalhtml = html /* + html2 */ ;
-        console.log(finalhtml)
+        //console.log(finalhtml)
         matchList.innerHTML = finalhtml;
     }
 }
