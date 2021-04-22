@@ -2,7 +2,7 @@ const search = document.getElementById('search');
 const matchList = document.getElementById('card-data');
 
 
-const api_artists = "/api/"
+const api = "/api/"
 
 const artist = "artists"
 const location_ = "locations"
@@ -10,8 +10,8 @@ const location_ = "locations"
 
 
 const searchStates = async searchText => {
-    const res_artist = await fetch(api_artists + artist);
-    const res_location = await fetch(api_artists + location_);
+    const res_artist = await fetch(api + artist);
+    const res_location = await fetch(api + location_);
     const states = await res_artist.json();
     const states2 = await res_location.json();
     console.log(states2);
