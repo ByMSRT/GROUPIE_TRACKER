@@ -2,7 +2,7 @@ const search = document.getElementById('search');
 const matchList = document.getElementById('card-data');
 
 
-const api_artists = "https://cors-anywhere.herokuapp.com/https://groupietrackers.herokuapp.com/api/"
+const api = "/api/"
 
 const artist = "artists"
 const location_ = "locations"
@@ -10,8 +10,8 @@ const location_ = "locations"
 
 
 const searchStates = async searchText => {
-    const res_artist = await fetch(api_artists + artist);
-    const res_location = await fetch(api_artists + location_);
+    const res_artist = await fetch(api + artist);
+    const res_location = await fetch(api + location_);
     const states = await res_artist.json();
     const states2 = await res_location.json();
     console.log(states2);
@@ -19,17 +19,15 @@ const searchStates = async searchText => {
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
 
-        let allMembers = document.createElement('ul')
-        
+        let allMembers = ""
+
         for (let index = 0; index < state.members.length; index++) {
-            let member = document.createElement('li')
-            member.append(state.members[index])
-            allMembers.appendChild(member)
+            allMembers += state.members[index]
         }
         console.log(allMembers)
-        let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex)|| allMembers || (state.firstAlbum).toString().match(regex)
+        let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex) || allMembers.match(regex) || (state.firstAlbum).toString().match(regex)
         return resultOfMatches
-        
+
     });
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -72,7 +70,7 @@ const outputHtml = (matches, matches2) => {
                         <h3>${match.name}</h3>
                     </div>
                     <div class="read-more-cont">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, at et natus, velit neque repudiandae quidem a eum voluptas officiis in quod recusandae totam labore eius quibusdam ipsam culpa magni.</p>
+                        <p>${match.locations}</p>
                     </div>
                     <button class="btn" type="button">Voir plus ...</button>
                 </div>
@@ -80,10 +78,13 @@ const outputHtml = (matches, matches2) => {
         
         `).join('');
 
-        /* const html2 = matches2.map(match2 => `
-        ${match2.locations[0]}</h4>
-        </>
-        `).join(''); */
+        /*         const html2 = matches2.map(match2 => `
+                <div class="card" id="card">
+                    <div class="read-more-cont">
+                        <p>${match2.locations}</p>
+                    </div>
+                </div>
+                `).join(''); */
 
         let finalhtml = html /* + html2 */ ;
         //console.log(finalhtml)

@@ -1,8 +1,12 @@
 package controller
 
 import (
+	"fmt"
 	"html/template"
+	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
@@ -39,4 +43,31 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 	}
 	err = custTemplate.Execute(w, nil)
+}
+
+func loadApi(w http.ResponseWriter, r *http.Request, endpoint string) {
+
+	response, err := http.Get("https://groupietrackers.herokuapp.com/api/" + endpoint)
+
+	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(1)
+	}
+
+	responseData, err := ioutil.ReadAll(response.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(responseData)
+}
+
+func Artists(w http.ResponseWriter, r *http.Request) {
+	loadApi(w, r, "artists")
+}
+
+func Locations(w http.ResponseWriter, r *http.Request) {
+	loadApi(w, r, "locations")
 }
