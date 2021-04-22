@@ -6,6 +6,8 @@ const api = "/api/"
 
 const artist = "artists"
 const location_ = "locations"
+const date = "dates"
+const relation = "relation"
 
 
 
@@ -79,12 +81,13 @@ const outputHtml = (matches, matches2) => {
         `).join('');
 
         /*         const html2 = matches2.map(match2 => `
-                <div class="card" id="card">
-                    <div class="read-more-cont">
-                        <p>${match2.locations}</p>
-                    </div>
-                </div>
-                `).join(''); */
+                        <div class="card" id="card">
+                            <div class="read-more-cont">
+                                <p>${match2.locations}</p>
+                            </div>
+                            <button class="btn" type="button">Voir plus ...</button>
+                        </div>
+                        `).join(''); */
 
         let finalhtml = html /* + html2 */ ;
         //console.log(finalhtml)
