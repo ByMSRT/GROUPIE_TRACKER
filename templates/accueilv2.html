@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
     <script src="https://cdn.lordicon.com//libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+    <script src="../static/js/accueil.js"></script>
 </head>
 
 <body>
@@ -54,6 +55,12 @@
             <a href="" class="disable-link"><img src="../static/img/logo3.png" alt=""></a>
             <a href="" class="disable-link"><img src="../static/img/logo4.png" alt=""></a>
         </div>
+    </div>
+
+    <div class="sort-by-date">
+        <p>Création :</p>
+        <input type="number" id="date-min" placeholder="Min" value="1950" max="2021" min="1950" onchange="MinAndMax()">
+        <input type="number" id="date-max" placeholder="Max" value="2021" max="2021" min="1950" onchange="MinAndMax()">
     </div>
 </body>
 
