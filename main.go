@@ -22,6 +22,7 @@ func main() {
 	http.HandleFunc("/", controller.Accueil)
 	http.HandleFunc("/valider", controller.Test)
 	http.HandleFunc("/map", controller.Map)
+	http.HandleFunc("/search", controller.Search)
 
 	fmt.Println(string(colorGreen), "[SERVER_READY] : on http://localhost:8000 ✅ ")
 	fmt.Println(string(colorYellow), "[SERVER_INFO] : To stop the program : Ctrl + c")
