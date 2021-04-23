@@ -11,7 +11,68 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <h1>Bienvenue sur Groupie Tracker</h1>
+=======
+    {{template "header"}}
+    <h1>Bienvenue sur Groupie Tracker</h1>
+    <div id="Search">
+        <input type="text" class="Search" placeholder="Search artist">
+    </div>
+    <div id="SortByDate">
+        <label>Sort By Date :</label>
+        <input type="range" class="SortByDate" min="1950" max="2021">
+        <!--créer une fonction js pour display la valeur-->
+    </div>
+    <div id="GroupMembers">
+        <label> Sort By Group Members :</label>
+        <input type="checkbox" class="GroupMembers" value="1">
+        <label> 1 </label>
+        <input type="checkbox" class="GroupMembers" value="2">
+        <label> 2 </label>
+        <input type="checkbox" class="GroupMembers" value="3">
+        <label> 3 </label>
+        <input type="checkbox" class="GroupMembers" value="4">
+        <label> 4 </label>
+        <input type="checkbox" class="GroupMembers" value="5">
+        <label> 5 </label>
+        <input type="checkbox" class="GroupMembers" value="6">
+        <label> 6 </label>
+        <input type="checkbox" class="GroupMembers" value="7">
+        <label> 7 </label>
+        <input type="checkbox" class="GroupMembers" value="8">
+        <label> 8 </label>
+        <input type="checkbox" class="GroupMembers" value="9">
+        <label> 9 </label>
+    </div>
+    <div id="Card">
+        <div id="TopCard">
+            <p>date</p>
+            <img src="../static/img/queens.png" class="Logo">
+            <h1 class="ArtistName">ARTISTES</h1>
+        </div>
+        <div id="BottomCard">
+            <div class="Members">
+                <p>Members:</p>
+                <div class="MemberList">
+                    <p>Membre 1 </p>
+                    <p>Membre 2 </p>
+                    <p>Membre 3 </p>
+                    <p>Membre 4 </p>
+                </div>
+            </div>
+            <div class="Album">
+                <p>Album</p>
+                <div class="TrackList">
+                    <p>Album "Allumez, ytrack !"</p>
+                    <p>Album "Eléphant rose"</p>
+                    <p>Album "Mortis need a buff"</p>
+                    <p>Album "Allumez, ytrack !(réédition)"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+>>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 
     <form action="/valider" method="post">
         <button>Valider</button>

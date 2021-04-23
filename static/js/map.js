@@ -5,6 +5,19 @@ function initMap() {
         zoom: 8,
         center: initPointer,
     });
+
+    let initialPlace = { lat: 47.205389240386936, lng: -1.539540743860519 }
+    // Définit une map qui pointe sur Ynov Nantes
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: initialPlace,
+    });
+
+    new google.map.Marker({
+        position: initialPlace,
+        title : document.getElementById("address").value
+    })
+
     const geocoder = new google.maps.Geocoder();
 
     // Evènement qui va pointer sur un lieu si il y a un click
@@ -27,7 +40,7 @@ function geocodeAddress(geocoder, resultsMap) {
         });
         // Sinon message d'erreur 
         } else {
-            alert("Geocode was not successful for the following reason: " + status);
+            alert("Error type :" + status);
         }
     });
 

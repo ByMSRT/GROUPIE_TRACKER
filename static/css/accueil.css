@@ -1,3 +1,68 @@
+<<<<<<< HEAD
 h1 {
     color: red;
+=======
+#Card {
+    display: flex; 
+    height: 450px;
+    width: 400px;
+    background-color: green;
+    flex-direction: column;
+}
+
+.Logo {
+    height: 50px;
+    width: 50px;
+}
+
+.ArtistName {
+    text-align: center;
+    background-color: purple;
+}
+
+
+#BottomCard {
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkslategray;
+    color: white;
+    height: 50px;
+}
+
+.Search {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 250px;
+}
+
+.input-field {
+    height: 20px;
+}
+
+.title {
+    font-size: xx-large;
+    font-style: italic;
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 1100px;
+    width: 200px;
+}
+
+a {
+    color: white;
+>>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 }
