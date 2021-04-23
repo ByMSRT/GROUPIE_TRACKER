@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
     <script src="https://cdn.lordicon.com//libs/frhvbuzj/lord-icon-2.0.2.js"></script>
-    <script src="../static/js/accueil.js"></script>
 </head>
 
 <body>
@@ -59,9 +58,20 @@
 
     <div class="sort-by-date">
         <p>Création :</p>
-        <input type="number" id="date-min" placeholder="Min" value="1950" max="2021" min="1950" onchange="MinAndMax()">
-        <input type="number" id="date-max" placeholder="Max" value="2021" max="2021" min="1950" onchange="MinAndMax()">
+        <div class="min" id="mini"></div>
+        <div class="max" id="maxi"></div>
     </div>
+
+    <div class="container">
+        <div class="heading">
+            <h1>Résultats : </h1>
+        </div>
+        <div class="row" id="card-data">
+
+        </div>
+    </div>
+
+    <script src="../static/js/accueil.js"></script>
 </body>
 
 </html>
