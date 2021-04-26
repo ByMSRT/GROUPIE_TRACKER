@@ -3,6 +3,8 @@ let marker;
 
 function initMap() {
     const newMarker = document.getElementById('search').value
+    // Transforme les noms de villes en coordonnées GPS
+    const geocoder = new google.maps.Geocoder();
     let initialPlace = { lat: 47.205389240386936, lng: -1.539540743860519 }
     let newPlace = document.getElementById("submit")
     // Définit une map qui pointe sur Ynov Nantes
@@ -21,24 +23,12 @@ function initMap() {
     
     tabMarker.push(marker)
 
-    // Transforme les noms de villes en coordonnées GPS
-    const geocoder = new google.maps.Geocoder();
     // Evènement qui va pointer sur un lieu si il y a un click
     newPlace.addEventListener("click", () => {
         marker.setMap(null)
         geocodeAddress(geocoder, map);
-        
     });
-
-    marker.info = new google.maps.InfoWindow({
-        content: '<b>City name:'+ newMarker +'</b>'
-    });
-        
-    google.maps.event.addListener(marker, 'click', function() {
-        this.info.open(map, marker);
-    });
-
-    console.log(newMarker)
+    
 }
 
 
@@ -53,6 +43,8 @@ function geocodeAddress(geocoder, resultsMap) {
                 map: resultsMap,
                 position: results[0].geometry.location,
             });
+            // Fonction qui créer une fenêtre d'information
+            InfoWindow(search, results)
         // Sinon message d'erreur 
         } else {
             alert("Error type :" + status);
@@ -61,3 +53,15 @@ function geocodeAddress(geocoder, resultsMap) {
 
 }
 
+function InfoWindow(search, results) {
+    search.value = results[0].formatted_address
+    marker.info = new google.maps.InfoWindow({
+        content: '<b>City name:'+ search.value +'</b>'
+    });
+        
+    google.maps.event.addListener(marker, 'click', function() {
+        this.info.open(map, marker);
+    });
+
+    console.log(search.value)
+}
