@@ -26,6 +26,11 @@ h6 {
     background-blend-mode: overlay;
 }
 
+.test {
+    height: 50px;
+    width: 50px;
+}
+
 .wave {
     position: absolute;
     width: 100%;
