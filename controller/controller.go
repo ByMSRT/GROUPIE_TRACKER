@@ -1,8 +1,12 @@
 package controller
 
 import (
+	"fmt"
 	"html/template"
+	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
@@ -25,6 +29,18 @@ func Test(w http.ResponseWriter, r *http.Request) {
 
 func Map(w http.ResponseWriter, r *http.Request) {
 	custTemplate, err := template.ParseFiles("./templates/map.html", "./templates/navigation.html")
+<<<<<<< HEAD
+
+	if err != nil {
+
+	}
+	err = custTemplate.Execute(w, nil)
+}
+
+func Search(w http.ResponseWriter, r *http.Request) {
+	custTemplate, err := template.ParseFiles("./templates/searchv2.html")
+=======
+>>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 
 	if err != nil {
 
@@ -39,4 +55,31 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 	}
 	err = custTemplate.Execute(w, nil)
+}
+
+func loadApi(w http.ResponseWriter, r *http.Request, endpoint string) {
+
+	response, err := http.Get("https://groupietrackers.herokuapp.com/api/" + endpoint)
+
+	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(1)
+	}
+
+	responseData, err := ioutil.ReadAll(response.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(responseData)
+}
+
+func Artists(w http.ResponseWriter, r *http.Request) {
+	loadApi(w, r, "artists")
+}
+
+func Locations(w http.ResponseWriter, r *http.Request) {
+	loadApi(w, r, "locations")
 }

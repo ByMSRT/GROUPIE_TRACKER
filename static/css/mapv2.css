@@ -6,6 +6,7 @@
 
 body {
     font-family: 'Nova Round', cursive;
+    background: #ffc107;
 }
 
 h1,
@@ -15,6 +16,66 @@ h4,
 h5,
 h6 {
     font-family: 'Concert One', cursive;
+}
+
+.searchBox {
+    position: absolute;
+    top: 135%;
+    left: 70%;
+    transform: translate(-50%, 50%);
+    background: #ffc107;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    box-sizing: initial;
+}
+
+.searchBox:hover>.searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover>.searchButton {
+    background: white;
+    color: black;
+}
+
+.searchButton {
+    color: black;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffc107;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+    font-family: 'Concert One', cursive;
+}
+
+ ::placeholder {
+    color: white;
+}
+
+@media screen and (max-width: 620px) {
+    .searchBox:hover>.searchInput {
+        width: 150px;
+        padding: 0 6px;
+    }
 }
 
 .wrap {
@@ -104,44 +165,37 @@ header ul li a {
     background-color: #ffc107;
 }
 
-.our-partners {
-    padding: 0 80px;
-    position: relative;
+.contact-in {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px #666;
 }
 
-.our-partners h3 {
-    font-size: 28px;
-    margin-bottom: 15px;
+.contact-map {
+    width: 100%;
+    height: auto;
+    flex: 50%;
 }
 
-.our-partners hr {
-    border: none;
-    height: 4px;
-    width: 100px;
-    background-color: orange;
-}
-
-.our-partners-inner {
-    margin-top: 50px;
+.contact-search {
+    width: 100%;
+    height: auto;
+    flex: 50%;
+    padding: 30px;
     text-align: center;
 }
 
-.our-partners-inner a {
-    display: inline-block;
-    width: 14%;
-    padding: 15px;
-    margin-right: 25px;
-    border: 1px solid #cacaca;
-    border-radius: 20px;
-    box-shadow: 0 5px 0 #cacaca;
-    margin-bottom: 20px;
+.contact-search h1 {
+    margin-bottom: 10px;
 }
 
-.our-partners-inner img {
-    width: 100px;
-}
-
-.test {
-    height: 50px;
-    width: 50px;
+#map {
+    width: 100%;
+    height: 400px;
 }
