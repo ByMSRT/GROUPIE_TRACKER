@@ -54,4 +54,4 @@ function removeLastMarker() {
         tabMarker = [];
         marker.setMap(null)
     }
-}
+} 
