@@ -1,9 +1,8 @@
 let tabMarker = [];
 let marker;
-
 function initMap() {
     let initialPlace = { lat: 47.205389240386936, lng: -1.539540743860519 }
-        // Définit une map qui pointe sur Ynov Nantes
+    // Définit une map qui pointe sur Ynov Nantes
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
         center: initialPlace,
@@ -11,10 +10,10 @@ function initMap() {
 
     marker = new google.maps.Marker({
         position: initialPlace,
-        title: document.getElementById("search").value,
+        title : document.getElementById("search").value,
         map: map
     })
-
+    
     tabMarker.push(marker)
     const geocoder = new google.maps.Geocoder();
 
@@ -38,11 +37,10 @@ function geocodeAddress(geocoder, resultsMap) {
             resultsMap.setCenter(results[0].geometry.location);
             // On va recréer une map avec les nouvelles coordonnées GPS
             marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location,
-            });
-
-            // Sinon message d'erreur 
+            map: resultsMap,
+            position: results[0].geometry.location,});
+            
+        // Sinon message d'erreur 
         } else {
             alert("Error type :" + status);
         }
@@ -56,4 +54,4 @@ function removeLastMarker() {
         tabMarker = [];
         marker.setMap(null)
     }
-}
+} 
