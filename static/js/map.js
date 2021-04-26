@@ -44,7 +44,7 @@ function geocodeAddress(geocoder, resultsMap) {
                 position: results[0].geometry.location,
             });
             // Fonction qui créer une fenêtre d'information
-            InfoWindow(search, results)
+            infoWindow(search, results)
         // Sinon message d'erreur 
         } else {
             alert("Error type :" + status);
@@ -53,7 +53,7 @@ function geocodeAddress(geocoder, resultsMap) {
 
 }
 
-function InfoWindow(search, results) {
+function infoWindow(search, results) {
     search.value = results[0].formatted_address
     marker.info = new google.maps.InfoWindow({
         content: '<b>City name:'+ search.value +'</b>'
