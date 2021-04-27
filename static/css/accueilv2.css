@@ -26,7 +26,7 @@ h6 {
     background-blend-mode: overlay;
 }
 
-.test {
+.logoaccueil {
     height: 50px;
     width: 50px;
 }
@@ -146,11 +146,6 @@ header ul li a {
     width: 100px;
 }
 
-<<<<<<< HEAD
-.test {
-    height: 50px;
-    width: 50px;
-=======
 .container {
     width: 90%;
     margin: 50px auto;
@@ -300,5 +295,4 @@ header ul li a {
 
 .popup-header-cont {
     visibility: hidden;
->>>>>>> 8d6c8c26761c37265601014a1570f1c9554ad893
 }
