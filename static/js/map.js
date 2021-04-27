@@ -1,40 +1,67 @@
+let tabMarker = [];
+let marker;
+
 function initMap() {
+    const newMarker = document.getElementById('search').value
+    // Transforme les noms de villes en coordonnées GPS
+    const geocoder = new google.maps.Geocoder();
     let initialPlace = { lat: 47.205389240386936, lng: -1.539540743860519 }
-        // Définit une map qui pointe sur Ynov Nantes
+    let newPlace = document.getElementById("submit")
+    // Définit une map qui pointe sur Ynov Nantes
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
         center: initialPlace,
     });
 
-    new google.map.Marker({
+    
+    marker = new google.maps.Marker({
         position: initialPlace,
-        title: document.getElementById("address").value
+        title : newMarker,
+        map: map,
+        clickable: true,
     })
-
-    const geocoder = new google.maps.Geocoder();
+    
+    tabMarker.push(marker)
 
     // Evènement qui va pointer sur un lieu si il y a un click
-    document.getElementById("submit").addEventListener("click", () => {
+    newPlace.addEventListener("click", () => {
+        marker.setMap(null)
         geocodeAddress(geocoder, map);
     });
+    
 }
 
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
 
-    geocoder.geocode({ address: address }, (results, status) => {
+function geocodeAddress(geocoder, resultsMap) {
+    const search = document.getElementById('search')
+    geocoder.geocode({ address: search.value }, (results, status) => {
         // Si L'API google est on va changer les coordonnées GPS 
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
             // On va recréer une map avec les nouvelles coordonnées GPS
-            new google.maps.Marker({
+            marker = new google.maps.Marker({
                 map: resultsMap,
                 position: results[0].geometry.location,
             });
-            // Sinon message d'erreur 
+            // Fonction qui créer une fenêtre d'information
+            infoWindow(search, results)
+        // Sinon message d'erreur 
         } else {
             alert("Error type :" + status);
         }
     });
 
+}
+
+function infoWindow(search, results) {
+    search.value = results[0].formatted_address
+    marker.info = new google.maps.InfoWindow({
+        content: '<b>City name:'+ search.value +'</b>'
+    });
+        
+    google.maps.event.addListener(marker, 'click', function() {
+        this.info.open(map, marker);
+    });
+
+    console.log(search.value)
 }
