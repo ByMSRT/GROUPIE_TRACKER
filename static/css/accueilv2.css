@@ -296,3 +296,8 @@ header ul li a {
 .popup-header-cont {
     visibility: hidden;
 }
+
+.sort-by-date {
+    display: flex;
+    margin-top: 5vh;
+}
