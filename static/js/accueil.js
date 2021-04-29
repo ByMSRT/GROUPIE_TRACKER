@@ -31,6 +31,11 @@ var maxi
 var tab
 
 function show(dataArtist) {
+    if (dataArtist == undefined) {
+        data(api + artist)
+    }
+    // data(api + artist);  
+    console.log(dataArtist)
     arr = []
     tab = []
     mini = document.getElementById("Selectmini").value
@@ -60,10 +65,7 @@ function show(dataArtist) {
             </div>
     </div>
     `);//.join('');
-    console.log(tab[5])
-    console.log(dataArtist[0].creationDate)
     for (let i = mini; i <= maxi; i++){
-        console.log(i)
         for (let l = 0; l < dataArtist.length; l++){
             if (dataArtist[l].creationDate === i){
                 arr.push(tab[l])
