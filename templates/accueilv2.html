@@ -45,6 +45,13 @@
 
     </div>
 
+    
+    <div class="sort-by-date">
+        <p>Création :  </p>
+        <label>  Date minimum du tri : </label><div class="min" id="mini"></div>
+        <label>  Date maximum du tri : </label><div class="max" id="maxi"></div>
+    </div>
+
     <div class="container">
         <div class="heading">
             <h1>Résultats : </h1>
@@ -53,21 +60,23 @@
 
         </div>
     </div>
-    <div class="popup-box">
-        <div class="popup-content">
-            <div class="popup-header">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" id="loading">
+            <div class="popup-box">
+                <div class="popup-content">
+                    <div class="popup-header">
 
-            </div>
-            <div class="popup-body">
+                    </div>
+                    <div class="popup-body">
 
+                    </div>
+                    <div class="popup-footer">
+                        <button class="popup-close-btn">Fermer</button>
+                    </div>
+                </div>
             </div>
-            <div class="popup-footer">
-                <button class="popup-close-btn">Fermer</button>
-            </div>
-        </div>
-    </div>
 
-    <script src="../static/js/accueil.js"></script>
+            <script src="../static/js/accueil.js"></script>
 </body>
 
 </html>
