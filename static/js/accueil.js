@@ -25,10 +25,18 @@ function hideloader() {
     document.getElementById('loading').style.display = 'none'
 }
 
+var arr 
+var mini
+var maxi 
+var tab
 
 function show(dataArtist) {
-    var arr = []
-    const tab = dataArtist.map(match => `
+    arr = []
+    tab = []
+    mini = document.getElementById("Selectmini").value
+    maxi = document.getElementById("Selectmaxi").value
+    console.log(mini)
+    tab = dataArtist.map(match => `
     <div class="card" id="card">
         <div class="card-header" id="card-header">
             <img src="${match.image}" alt="">
@@ -37,7 +45,7 @@ function show(dataArtist) {
                 <ul>
                     <li><h4>Nom :</h4><br>${match.name}</li>
                     <br>
-                    <li id="test" value="${match.creationDate}"><h4>Date de création :</h4><br>${match.creationDate}</li>
+                    <li><h4>Date de création :</h4><br>${match.creationDate}</li>
                     <br>
                     <li><h4>Membres :</h4><br>${match.members}</li>
                     <br>
@@ -51,15 +59,18 @@ function show(dataArtist) {
             <button class="btn" type="button">Voir plus ...</button>
             </div>
     </div>
-    
     `);//.join('');
+    console.log(tab[5])
+    console.log(dataArtist[0].creationDate)
     for (let i = mini; i <= maxi; i++){
-        if (match.creationDate == i){
-            arr.push(tab["l'index qui correspond"])
+        console.log(i)
+        for (let l = 0; l < dataArtist.length; l++){
+            if (dataArtist[l].creationDate === i){
+                arr.push(tab[l])
+            }
         }
     }
-    arr.join('');
-    matchList.innerHTML = arr;
+    matchList.innerHTML = arr.join('');
 }
 
 
@@ -98,7 +109,7 @@ function minOrMax(param) {
     let select = document.createElement("select")
     select.id = "Select"+param.id
     param.appendChild(select)
-    select.setAttribute("onchange", "MinAndMax()")
+    select.setAttribute("onchange", "show()")
     if (param == min) {
         minimum(select)
     }
@@ -108,7 +119,7 @@ function minOrMax(param) {
 }
 
 function minimum(param) {
-    for (let i = 1960; i <= 2021; i++){
+    for (let i = 1957; i <= 2021; i++){
         var optionMin = document.createElement("option")
         optionMin.value = i
         optionMin.text = i
@@ -117,7 +128,7 @@ function minimum(param) {
 }
 
 function maximum(param){
-    for (let l = 2021; l >= 1960; l--){
+    for (let l = 2021; l >= 1957; l--){
         var optionMax = document.createElement("option")
         optionMax.value = l
         optionMax.text = l
@@ -128,12 +139,3 @@ function maximum(param){
 minOrMax(min)
 minOrMax(max) 
 
-
-var mini
-var maxi 
-
-function MinAndMax(){
-    mini = document.getElementById("Selectmini").value
-    maxi = document.getElementById("Selectmaxi").value
-    console.log(mini)
-}
