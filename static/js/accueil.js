@@ -29,18 +29,16 @@ var arr
 var mini
 var maxi 
 var tab
+var ArrOfMembers
 
 function show(dataArtist) {
     if (dataArtist == undefined) {
         data(api + artist)
     }
-    // data(api + artist);  
-    console.log(dataArtist)
     arr = []
     tab = []
     mini = document.getElementById("Selectmini").value
     maxi = document.getElementById("Selectmaxi").value
-    console.log(mini)
     tab = dataArtist.map(match => `
     <div class="card" id="card">
         <div class="card-header" id="card-header">
@@ -65,10 +63,15 @@ function show(dataArtist) {
             </div>
     </div>
     `);//.join('');
+    PushOnArr()
     for (let i = mini; i <= maxi; i++){
         for (let l = 0; l < dataArtist.length; l++){
-            if (dataArtist[l].creationDate === i){
-                arr.push(tab[l])
+            if (dataArtist[l].creationDate == i){
+                for (let ArrIndex = 0; ArrIndex < ArrOfMembers.length; ArrIndex++){
+                    if (dataArtist[l].members.length == ArrOfMembers[ArrIndex]) {
+                        arr.push(tab[l])
+                    }
+                }
             }
         }
     }
@@ -121,7 +124,7 @@ function minOrMax(param) {
 }
 
 function minimum(param) {
-    for (let i = 1957; i <= 2021; i++){
+    for (let i = 1958; i <= 2021; i++){
         var optionMin = document.createElement("option")
         optionMin.value = i
         optionMin.text = i
@@ -130,7 +133,7 @@ function minimum(param) {
 }
 
 function maximum(param){
-    for (let l = 2021; l >= 1957; l--){
+    for (let l = 2021; l >= 1958; l--){
         var optionMax = document.createElement("option")
         optionMax.value = l
         optionMax.text = l
@@ -141,3 +144,29 @@ function maximum(param){
 minOrMax(min)
 minOrMax(max) 
 
+let MemberSort = document.getElementById("MemberSort")
+
+for (let index = 1; index <= 10; index++){
+    let check = document.createElement("input")
+    let label = document.createElement("label")
+    label.textContent = " " + index + " :"
+    check.id = "Checkbox" + index
+    check.setAttribute("type", "checkbox")
+    check.setAttribute("onclick", "PushOnArr()")
+    check.setAttribute("onclick", "show()")
+    check.value = index
+    MemberSort.appendChild(label)
+    MemberSort.appendChild(check)
+    check.checked = true
+}
+
+
+function PushOnArr() {
+    ArrOfMembers = []
+    for (let NbrDeCheckbox = 1; NbrDeCheckbox <= 10; NbrDeCheckbox++){
+        if (document.getElementById("Checkbox" + NbrDeCheckbox).checked === true){
+            ArrOfMembers.push(document.getElementById("Checkbox" + NbrDeCheckbox).value)
+        }
+    }
+    return ArrOfMembers
+}
