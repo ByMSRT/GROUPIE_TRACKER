@@ -43,7 +43,7 @@ function show(dataArtist) {
                     <h3>${match.name}</h3>
                 </div>
                 <div class="read-more-cont">
-                    <p>${match.locations}</p>
+                    <p>${match.relations}</p>
                 </div>
             <button class="btn" type="button">Voir plus ...</button>
         </div>
