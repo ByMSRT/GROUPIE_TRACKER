@@ -18,15 +18,6 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	err = custTemplate.Execute(w, nil)
 }
 
-func Test(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/test.html", "./templates/navigation.html")
-
-	if err != nil {
-
-	}
-	err = custTemplate.Execute(w, nil)
-}
-
 func Map(w http.ResponseWriter, r *http.Request) {
 	custTemplate, err := template.ParseFiles("./templates/map.html", "./templates/navigation.html")
 
@@ -78,4 +69,27 @@ func Dates(w http.ResponseWriter, r *http.Request) {
 
 func Relation(w http.ResponseWriter, r *http.Request) {
 	loadApi(w, r, "relation")
+}
+
+func test(w http.ResponseWriter, r *http.Request, id string) {
+
+	response, err := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
+
+	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(1)
+	}
+
+	responseData, err := ioutil.ReadAll(response.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(responseData)
+}
+
+func Test(w http.ResponseWriter, r *http.Request) {
+	test(w, r, "1")
 }

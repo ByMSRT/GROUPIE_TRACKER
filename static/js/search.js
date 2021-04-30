@@ -91,6 +91,7 @@ const outputHtml = (matches, matches2) => {
                         <h3>${match.name}</h3>
                     </div>
                     <div class="read-more-cont">
+                        <p>${match.relations}</p>
                     </div>
                 <button class="btn" type="button">Voir plus ...</button>
                 </div>
@@ -98,7 +99,7 @@ const outputHtml = (matches, matches2) => {
         
         `).join('');
 
-        const html2 = matches2.map(match2 => `
+        /* const html2 = matches2.map(match2 => `
         <div class="card" id="card">
             <div class="card-header" id="card-header">
             </div>
@@ -111,10 +112,10 @@ const outputHtml = (matches, matches2) => {
                 <button class="btn" type="button">Voir plus ...</button>
             </div>
         </div>
-         `).join('');
+         `).join(''); */
 
-        console.log(html2)
-        let finalhtml = html + html2;
+        /* console.log(html2) */
+        let finalhtml = html /* + html2 */ ;
 
         console.log(finalhtml)
         matchList.innerHTML = finalhtml;

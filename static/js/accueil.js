@@ -25,9 +25,9 @@ function hideloader() {
     document.getElementById('loading').style.display = 'none'
 }
 
-var arr 
+var arr
 var mini
-var maxi 
+var maxi
 var tab
 
 function show(dataArtist) {
@@ -60,14 +60,15 @@ function show(dataArtist) {
                     <h3>${match.name}</h3>
                 </div>
                 <div class="read-more-cont">
+                    <p>${match.relation}</p>
                 </div>
             <button class="btn" type="button">Voir plus ...</button>
-            </div>
+        </div>
     </div>
-    `);//.join('');
-    for (let i = mini; i <= maxi; i++){
-        for (let l = 0; l < dataArtist.length; l++){
-            if (dataArtist[l].creationDate === i){
+    `); //.join('');
+    for (let i = mini; i <= maxi; i++) {
+        for (let l = 0; l < dataArtist.length; l++) {
+            if (dataArtist[l].creationDate === i) {
                 arr.push(tab[l])
             }
         }
@@ -109,7 +110,7 @@ var max = document.getElementById("maxi")
 
 function minOrMax(param) {
     let select = document.createElement("select")
-    select.id = "Select"+param.id
+    select.id = "Select" + param.id
     param.appendChild(select)
     select.setAttribute("onchange", "show()")
     if (param == min) {
@@ -121,7 +122,7 @@ function minOrMax(param) {
 }
 
 function minimum(param) {
-    for (let i = 1957; i <= 2021; i++){
+    for (let i = 1957; i <= 2021; i++) {
         var optionMin = document.createElement("option")
         optionMin.value = i
         optionMin.text = i
@@ -129,15 +130,14 @@ function minimum(param) {
     }
 }
 
-function maximum(param){
-    for (let l = 2021; l >= 1957; l--){
+function maximum(param) {
+    for (let l = 2021; l >= 1957; l--) {
         var optionMax = document.createElement("option")
         optionMax.value = l
         optionMax.text = l
-        param.appendChild(optionMax) 
+        param.appendChild(optionMax)
     }
 }
 
 minOrMax(min)
-minOrMax(max) 
-
+minOrMax(max)
