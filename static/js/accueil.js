@@ -25,9 +25,9 @@ function hideloader() {
     document.getElementById('loading').style.display = 'none'
 }
 
-var arr 
+var arr
 var mini
-var maxi 
+var maxi
 var tab
 var ArrOfMembers
 
@@ -62,12 +62,12 @@ function show(dataArtist) {
             <button class="btn" type="button">Voir plus ...</button>
             </div>
     </div>
-    `);//.join('');
+    `); //.join('');
     PushOnArr()
-    for (let i = mini; i <= maxi; i++){
-        for (let l = 0; l < dataArtist.length; l++){
-            if (dataArtist[l].creationDate == i){
-                for (let ArrIndex = 0; ArrIndex < ArrOfMembers.length; ArrIndex++){
+    for (let i = mini; i <= maxi; i++) {
+        for (let l = 0; l < dataArtist.length; l++) {
+            if (dataArtist[l].creationDate == i) {
+                for (let ArrIndex = 0; ArrIndex < ArrOfMembers.length; ArrIndex++) {
                     if (dataArtist[l].members.length == ArrOfMembers[ArrIndex]) {
                         arr.push(tab[l])
                     }
@@ -112,7 +112,7 @@ var max = document.getElementById("maxi")
 
 function minOrMax(param) {
     let select = document.createElement("select")
-    select.id = "Select"+param.id
+    select.id = "Select" + param.id
     param.appendChild(select)
     select.setAttribute("onchange", "show()")
     if (param == min) {
@@ -124,7 +124,7 @@ function minOrMax(param) {
 }
 
 function minimum(param) {
-    for (let i = 1958; i <= 2021; i++){
+    for (let i = 1958; i <= 2021; i++) {
         var optionMin = document.createElement("option")
         optionMin.value = i
         optionMin.text = i
@@ -132,21 +132,21 @@ function minimum(param) {
     }
 }
 
-function maximum(param){
-    for (let l = 2021; l >= 1958; l--){
+function maximum(param) {
+    for (let l = 2021; l >= 1958; l--) {
         var optionMax = document.createElement("option")
         optionMax.value = l
         optionMax.text = l
-        param.appendChild(optionMax) 
+        param.appendChild(optionMax)
     }
 }
 
 minOrMax(min)
-minOrMax(max) 
+minOrMax(max)
 
 let MemberSort = document.getElementById("MemberSort")
 
-for (let index = 1; index <= 10; index++){
+for (let index = 1; index <= 10; index++) {
     let check = document.createElement("input")
     let label = document.createElement("label")
     label.textContent = " " + index + " :"
@@ -163,8 +163,8 @@ for (let index = 1; index <= 10; index++){
 
 function PushOnArr() {
     ArrOfMembers = []
-    for (let NbrDeCheckbox = 1; NbrDeCheckbox <= 10; NbrDeCheckbox++){
-        if (document.getElementById("Checkbox" + NbrDeCheckbox).checked === true){
+    for (let NbrDeCheckbox = 1; NbrDeCheckbox <= 10; NbrDeCheckbox++) {
+        if (document.getElementById("Checkbox" + NbrDeCheckbox).checked === true) {
             ArrOfMembers.push(document.getElementById("Checkbox" + NbrDeCheckbox).value)
         }
     }
