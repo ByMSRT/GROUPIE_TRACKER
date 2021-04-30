@@ -47,7 +47,7 @@
 
     
     <div class="sort-by-date">
-        <p>Création :  </p>
+        <p>Création du groupe :  </p>
         <label>  Date minimum du tri : </label><div class="min" id="mini"></div>
         <label>  Date maximum du tri : </label><div class="max" id="maxi"></div>
     </div>
@@ -57,6 +57,12 @@
         <div id="MemberSort"></div>
     </div>
     
+    <div class="sort-by-date-FirstAlbulm">
+        <p>Date de sortie du 1er albulm : </p>
+        <input type="range" id="input-range" class="range" min="1958" max="2021" value="2021" onchange="show()">
+        <p>Date choisis : <span id="dateOutput"></span></p>
+    </div>
+
     <div class="container">
         <div class="heading">
             <h1>Résultats : </h1>
