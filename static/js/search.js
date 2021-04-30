@@ -91,7 +91,7 @@ const outputHtml = (matches, matches2) => {
                         <h3>${match.name}</h3>
                     </div>
                     <div class="read-more-cont">
-                        <p>${match.relations}</p>
+                        <p class="relation" data-url="${match.relations}">...</p>
                     </div>
                 <button class="btn" type="button">Voir plus ...</button>
                 </div>
@@ -129,9 +129,14 @@ const cardData = document.querySelector(".row");
 const popup = document.querySelector(".popup-box");
 const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
-cardData.addEventListener("click", function(event) {
+cardData.addEventListener("click", async function(event) {
     if (event.target.tagName.toLowerCase() == "button") {
         const item = event.target.parentElement;
+        const relation = item.querySelector(".relation");
+        const pathPart = relation.dataset.url.split("/");
+        let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+        let data = await res.json();
+        relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;

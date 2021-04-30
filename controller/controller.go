@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
@@ -91,5 +92,6 @@ func test(w http.ResponseWriter, r *http.Request, id string) {
 }
 
 func Test(w http.ResponseWriter, r *http.Request) {
-	test(w, r, "1")
+	pathPart := strings.Split(r.URL.Path, "/")
+	test(w, r, pathPart[len(pathPart)-1])
 }
