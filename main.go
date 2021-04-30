@@ -20,7 +20,7 @@ func main() {
 
 	//http.HandleFunc("/", route)
 
-	http.HandleFunc("/valider", controller.Test)
+	http.HandleFunc("/api/relation/", controller.Test)
 	http.HandleFunc("/map", controller.Map)
 	http.HandleFunc("/search", controller.Search)
 	http.HandleFunc("/api/artists", controller.Artists)
