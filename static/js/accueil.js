@@ -148,7 +148,7 @@ function selectionArtistWithMembers() {
     }
 }
 
-// Fonction permettant d'initialisé les boutons, leur valeur, leur id ...
+// Fonction permettant d'initialisé les checkbox, leurs valeurs, leurs id ...
 function selectMembers(name, value) {
     let MemberSort = document.getElementById("MemberSort")
     let check = document.createElement("input")
@@ -156,6 +156,9 @@ function selectMembers(name, value) {
     label.textContent = " " + name + " :"
     check.id = "Checkbox" + name
     check.value = value 
+    if (check.value == 0) {
+        check.checked = true
+    }
     check.setAttribute("type", "checkbox")
     check.setAttribute("onclick", "PushOnArr()")
     check.setAttribute("onclick", "show()")
