@@ -118,7 +118,7 @@ cardData.addEventListener("click", async function(event) {
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
         elementAPI(data, relation)
-        //relation.innerHTML = JSON.stringify(data);
+            //relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -152,5 +152,5 @@ function elementAPI(elementJSON, relation) {
     }
 
     relation.innerHTML = result.join(', ')
-    
+
 }
