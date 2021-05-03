@@ -13,17 +13,18 @@ async function data(url) {
 
     const dataArtist = await res_artist.json();
     console.log(dataArtist);
-    if (res_artist) {
-        hideloader();
-    }
+    // if (res_artist) {
+    //     hideloader();
+    // }
     show(dataArtist);
+    setupPopup()
 }
 
 data(api + artist);
 
-function hideloader() {
-    document.getElementById('loading').style.display = 'none'
-}
+// function hideloader() {
+//     document.getElementById('loading').style.display = 'none'
+// }
 
 var arr         // Notre tableau final avec les cartes des groupes
 var mini        // Valeur du select de la date minimum
@@ -58,8 +59,7 @@ function show(dataArtist) {
                 <div class="popup-header-cont">
                     <h3>${match.name}</h3>
                 </div>
-                <div class="read-more-cont">
-                </div>
+                <div class="read-more-cont"><p>Salut à tous c'est un test</p></div>
             <button class="btn" type="button">Voir plus ...</button>
             </div>
     </div>
@@ -70,34 +70,57 @@ function show(dataArtist) {
     matchList.innerHTML = arr.slice(0, 10).join('');     // On join notre tableau pour avoir un affichage sans "," et correct
 }
 
+function setupPopup(){
+    const cardData = document.querySelector(".row");
+    const popup = document.querySelector(".popup-box");
+    const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
-
-const cardData = document.querySelector(".row");
-const popup = document.querySelector(".popup-box");
-const popupCloseBtn = popup.querySelector(".popup-close-btn")
-
-cardData.addEventListener("click", function(event) {
-    if (event.target.tagName.toLowerCase() == "button") {
-        const item = event.target.parentElement;
-        const h3 = item.querySelector(".popup-header-cont").innerHTML;
-        const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
-        popup.querySelector(".popup-header").innerHTML = h3;
-        popup.querySelector(".popup-body").innerHTML = readMoreCont
-        popupBox();
-    }
-})
-
-popupCloseBtn.addEventListener("click", popupBox);
-
-popup.addEventListener("click", function(event) {
-    if (event.target == popup) {
-        popupBox();
-    }
-})
-
-function popupBox() {
-    popup.classList.toggle("open");
+    cardData.addEventListener("click", function(event) {
+        if (event.target.tagName.toLowerCase() == "button") {
+            const item = event.target.parentElement;
+            const h3 = item.querySelector(".popup-header-cont").innerHTML;
+            const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+            popup.querySelector(".popup-header").innerHTML = h3;
+            popup.querySelector(".popup-body").innerHTML = readMoreCont
+            popup.classList.toggle("open");
+        }
+    })
+    
+    popupCloseBtn.addEventListener("click", ()=> {popup.classList.toggle("open");});
+    
+    popup.addEventListener("click", function(event) {
+        if (event.target == popup) {
+            popup.classList.toggle("open");
+        }
+    })
 }
+
+// const cardData = document.querySelector(".row");
+// const popup = document.querySelector(".popup-box");
+// const popupCloseBtn = popup.querySelector(".popup-close-btn")
+// console.log("coucou2")
+// cardData.addEventListener("click", function(event) {
+//     if (event.target.tagName.toLowerCase() == "button") {
+//         const item = event.target.parentElement;
+//         const h3 = item.querySelector(".popup-header-cont").innerHTML;
+//         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+//         popup.querySelector(".popup-header").innerHTML = h3;
+//         popup.querySelector(".popup-body").innerHTML = readMoreCont
+//         popupBox();
+//     }
+// })
+
+// popupCloseBtn.addEventListener("click", popupBox);
+
+// popup.addEventListener("click", function(event) {
+//     if (event.target == popup) {
+//         popupBox();
+//     }
+// })
+
+// function popupBox() {
+//     popup.classList.toggle("open");
+// }
 
 var min = document.getElementById("mini")
 var max = document.getElementById("maxi")
