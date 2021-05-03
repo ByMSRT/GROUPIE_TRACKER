@@ -14,17 +14,8 @@ const relation = "relation"
 const searchStates = async searchText => {
     const res_artist = await fetch(api + artist);
     const res_location = await fetch(api + location_);
-    const res_relation = await fetch(api + relation)
     const states = await res_artist.json();
     const states2 = await res_location.json();
-    const relationConvert = JSON.stringify(res_relation);
-    /*     const states3 = await relationConvert.json(); */
-    console.log(res_artist);
-    console.log(res_location);
-    console.log(res_relation);
-    console.log(states);
-    console.log(states2)
-    console.log(relationConvert);
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -41,7 +32,6 @@ const searchStates = async searchText => {
 
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        console.log(states2)
 
         let allLocation = ""
 
@@ -49,24 +39,16 @@ const searchStates = async searchText => {
             allLocation += state2.locations[index]
         }
         let resultLocations = allLocation.match(regex);
-        console.log(resultLocations);
         let resultData = JSON.stringify(resultLocations);
-        console.log(resultData)
         return resultData
 
     });
-    console.log(matches)
-    console.log(matches2)
-
-
     if (searchText.length === 0) {
         matches = [];
         matches2 = [];
         matchList.innerHTML = '';
     }
-
     outputHtml(matches, matches2);
-
 }
 
 const outputHtml = (matches, matches2) => {
@@ -92,6 +74,7 @@ const outputHtml = (matches, matches2) => {
                     </div>
                     <div class="read-more-cont">
                         <p class="relation" data-url="${match.relations}">...</p>
+                        <button class="btn_map" type="button" onclick=redirectMap() >Accéder à la map</button>
                     </div>
                 <button class="btn" type="button">Voir plus ...</button>
                 </div>
@@ -117,7 +100,6 @@ const outputHtml = (matches, matches2) => {
         /* console.log(html2) */
         let finalhtml = html /* + html2 */ ;
 
-        console.log(finalhtml)
         matchList.innerHTML = finalhtml;
     }
 }
@@ -136,7 +118,8 @@ cardData.addEventListener("click", async function(event) {
         const pathPart = relation.dataset.url.split("/");
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
-        relation.innerHTML = JSON.stringify(data);
+        elementAPI(data, relation)
+            //relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -155,4 +138,20 @@ popup.addEventListener("click", function(event) {
 
 function popupBox() {
     popup.classList.toggle("open");
+}
+
+function elementAPI(elementJSON, relation) {
+    let json = JSON.stringify(elementJSON.datesLocations)
+    let parseJSON = JSON.parse(json)
+    let result = [];
+    let index, resultpush
+
+    for (index in parseJSON) {
+        resultpush = index + " : " + parseJSON[index]
+        result.push(resultpush)
+
+    }
+
+    relation.innerHTML = result.join(', ')
+
 }

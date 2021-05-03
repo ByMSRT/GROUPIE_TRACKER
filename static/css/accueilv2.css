@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Nova Round', cursive;
+    font-family: "Nova Round", cursive;
 }
 
 h1,
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Concert One', cursive;
+    font-family: "Concert One", cursive;
 }
 
 .wrap {
@@ -193,7 +193,7 @@ header ul li a {
     text-decoration: none;
     padding: 10px 5px;
     border-radius: 5px;
-    font-family: 'Concert One', cursive;
+    font-family: "Concert One", cursive;
 }
 
 .card:hover {
