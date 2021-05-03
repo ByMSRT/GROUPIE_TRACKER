@@ -118,8 +118,7 @@ cardData.addEventListener("click", async function(event) {
         const pathPart = relation.dataset.url.split("/");
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
-        elementAPI(data, relation)
-            //relation.innerHTML = JSON.stringify(data);
+        elementAPI(data, relation);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -154,4 +153,10 @@ function elementAPI(elementJSON, relation) {
 
     relation.innerHTML = result.join(', ')
 
+}
+
+function redirectMap() {
+    let url = new XMLHttpRequest
+    console.log(url.open('POST', "http://localhost:8000/map", true));
+    console.log(url.send());
 }
