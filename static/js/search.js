@@ -24,20 +24,15 @@ const searchStates = async searchText => {
     const res_artist = await fetch(api + artist);
     const res_location = await fetch(api + location_);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 =======
     const res_relation = await fetch(api + relation)
 >>>>>>> 8d6c8c26761c37265601014a1570f1c9554ad893
+=======
+>>>>>>> 12903b79b5ebaf1e94114f1cf489c3e12ed715f5
     const states = await res_artist.json();
     const states2 = await res_location.json();
-    const relationConvert = JSON.stringify(res_relation);
-    /*     const states3 = await relationConvert.json(); */
-    console.log(res_artist);
-    console.log(res_location);
-    console.log(res_relation);
-    console.log(states);
-    console.log(states2)
-    console.log(relationConvert);
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -58,7 +53,6 @@ const searchStates = async searchText => {
 
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        console.log(states2)
 
         let allLocation = ""
 
@@ -66,24 +60,16 @@ const searchStates = async searchText => {
             allLocation += state2.locations[index]
         }
         let resultLocations = allLocation.match(regex);
-        console.log(resultLocations);
         let resultData = JSON.stringify(resultLocations);
-        console.log(resultData)
         return resultData
 
     });
-    console.log(matches)
-    console.log(matches2)
-
-
     if (searchText.length === 0) {
         matches = [];
         matches2 = [];
         matchList.innerHTML = '';
     }
-
     outputHtml(matches, matches2);
-
 }
 
 const outputHtml = (matches, matches2) => {
@@ -122,6 +108,7 @@ const outputHtml = (matches, matches2) => {
                         <h3>${match.name}</h3>
                     </div>
                     <div class="read-more-cont">
+                        <p class="relation" data-url="${match.relations}">...</p>
                     </div>
 <<<<<<< HEAD
                     <button class="btn" type="button">Voir plus ...</button>
@@ -136,6 +123,7 @@ const outputHtml = (matches, matches2) => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         /* const html2 = matches2.map(match2 => `
         ${match2.locations[0]}</h4>
         </>
@@ -148,6 +136,9 @@ const outputHtml = (matches, matches2) => {
                 <div class="card" id="card">
 =======
         const html2 = matches2.map(match2 => `
+=======
+        /* const html2 = matches2.map(match2 => `
+>>>>>>> 12903b79b5ebaf1e94114f1cf489c3e12ed715f5
         <div class="card" id="card">
             <div class="card-header" id="card-header">
             </div>
@@ -161,11 +152,12 @@ const outputHtml = (matches, matches2) => {
                 <button class="btn" type="button">Voir plus ...</button>
             </div>
         </div>
-         `).join('');
+         `).join(''); */
 
-        console.log(html2)
-        let finalhtml = html + html2;
+        /* console.log(html2) */
+        let finalhtml = html /* + html2 */ ;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         let finalhtml = html /* + html2 */ ;
         //console.log(finalhtml)
@@ -173,6 +165,8 @@ const outputHtml = (matches, matches2) => {
 =======
         console.log(finalhtml)
 >>>>>>> 8d6c8c26761c37265601014a1570f1c9554ad893
+=======
+>>>>>>> 12903b79b5ebaf1e94114f1cf489c3e12ed715f5
         matchList.innerHTML = finalhtml;
     }
 }
@@ -187,9 +181,14 @@ const cardData = document.querySelector(".row");
 const popup = document.querySelector(".popup-box");
 const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
-cardData.addEventListener("click", function(event) {
+cardData.addEventListener("click", async function(event) {
     if (event.target.tagName.toLowerCase() == "button") {
         const item = event.target.parentElement;
+        const relation = item.querySelector(".relation");
+        const pathPart = relation.dataset.url.split("/");
+        let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+        let data = await res.json();
+        relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
