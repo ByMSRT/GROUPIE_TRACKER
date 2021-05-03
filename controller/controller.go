@@ -72,7 +72,7 @@ func Relation(w http.ResponseWriter, r *http.Request) {
 	loadApi(w, r, "relation")
 }
 
-func test(w http.ResponseWriter, r *http.Request, id string) {
+func getId(w http.ResponseWriter, r *http.Request, id string) {
 
 	response, err := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
 
@@ -91,7 +91,7 @@ func test(w http.ResponseWriter, r *http.Request, id string) {
 	w.Write(responseData)
 }
 
-func Test(w http.ResponseWriter, r *http.Request) {
+func RelationData(w http.ResponseWriter, r *http.Request) {
 	pathPart := strings.Split(r.URL.Path, "/")
-	test(w, r, pathPart[len(pathPart)-1])
+	getId(w, r, pathPart[len(pathPart)-1])
 }
