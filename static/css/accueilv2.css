@@ -296,3 +296,13 @@ header ul li a {
 .popup-header-cont {
     visibility: hidden;
 }
+
+#page1,
+#page2,
+#page3,
+#page4,
+#page5,
+#page6 {
+    height: 25px;
+    width: 25px;
+}

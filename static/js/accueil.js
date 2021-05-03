@@ -65,7 +65,9 @@ function show(dataArtist) {
     </div>
     `);
     SelectionArtist(dataArtist)
-    matchList.innerHTML = arr.join('');     // On join notre tableau pour avoir un affichage sans "," et correct
+    let nbrPage = Math.ceil(arr.length / 10)
+    PageNumber(nbrPage)
+    matchList.innerHTML = arr.slice(0, 10).join('');     // On join notre tableau pour avoir un affichage sans "," et correct
 }
 
 
@@ -180,9 +182,9 @@ function SelectionArtist(dataArtist) {
                             const Album = dataArtist[l].firstAlbum.split('-')
                             const YearOfAlbum = Album[2]
                             if (YearOfAlbum == z){     // Si la date du 1er albulm = une date entre 1958 et le range 
-                                if (arr.length < 10){
-                                    arr.push(tab[l])    // On push dans arr(tableau vide) la carte de tel artiste si tout les filtres sont checked
-                                }
+                                // if (arr.length < 10){
+                                arr.push(tab[l])    // On push dans arr(tableau vide) la carte de tel artiste si tout les filtres sont checked
+                                // }
                             }
                         }
                     }
@@ -216,4 +218,38 @@ output.innerHTML = range.value
 
 range.oninput = function() {
     output.innerHTML = this.value
+}
+
+let contener = document.getElementById("PageChoosing")
+
+function PageNumber(param){
+    contener.innerHTML = ""
+    for (let index = 1; index <= param; index++){
+        let page = document.createElement("button")
+        page.setAttribute("onclick", "test("+ index + ")")
+        page.id = "page" + index
+        page.innerText = index
+        contener.appendChild(page)
+    }
+}
+
+var arrBis = []
+
+function test(param){
+    console.log(param)
+    matchList.innerHTML = ""
+    if (param == 1){
+        arrBis = arr.slice(0, 10)
+    } else if (param == 2){
+        arrBis = arr.slice(10, 20)
+    } else if (param == 3){
+        arrBis = arr.slice(20, 30)
+    } else if (param == 4){
+        arrBis = arr.slice(30, 40)
+    } else if (param == 5){
+        arrBis = arr.slice(40, 50)
+    } else {
+        arrBis = arr.slice(50)
+    }
+    matchList.innerHTML = arrBis.join('');
 }
