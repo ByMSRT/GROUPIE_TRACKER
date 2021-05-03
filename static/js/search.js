@@ -74,6 +74,7 @@ const outputHtml = (matches, matches2) => {
                     </div>
                     <div class="read-more-cont">
                         <p class="relation" data-url="${match.relations}">...</p>
+                        <button class="btn_map" type="button" onclick=redirectMap() >Accéder à la map</button>
                     </div>
                 <button class="btn" type="button">Voir plus ...</button>
                 </div>
@@ -118,7 +119,7 @@ cardData.addEventListener("click", async function(event) {
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
         elementAPI(data, relation)
-        //relation.innerHTML = JSON.stringify(data);
+            //relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -152,5 +153,5 @@ function elementAPI(elementJSON, relation) {
     }
 
     relation.innerHTML = result.join(', ')
-    
+
 }
