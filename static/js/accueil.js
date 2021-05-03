@@ -65,7 +65,6 @@ function show(dataArtist) {
     </div>
     `);
     SelectionArtist(dataArtist)
-    
     matchList.innerHTML = arr.join('');     // On join notre tableau pour avoir un affichage sans "," et correct
 }
 
@@ -181,7 +180,9 @@ function SelectionArtist(dataArtist) {
                             const Album = dataArtist[l].firstAlbum.split('-')
                             const YearOfAlbum = Album[2]
                             if (YearOfAlbum == z){     // Si la date du 1er albulm = une date entre 1958 et le range 
-                                arr.push(tab[l])    // On push dans arr(tableau vide) la carte de tel artiste si tout les filtres sont checked
+                                if (arr.length < 10){
+                                    arr.push(tab[l])    // On push dans arr(tableau vide) la carte de tel artiste si tout les filtres sont checked
+                                }
                             }
                         }
                     }
