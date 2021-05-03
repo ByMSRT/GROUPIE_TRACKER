@@ -19,11 +19,6 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	//http.HandleFunc("/", route)
-<<<<<<< HEAD
-	http.HandleFunc("/", controller.Accueil)
-	http.HandleFunc("/valider", controller.Test)
-	http.HandleFunc("/map", controller.Map)
-=======
 
 	http.HandleFunc("/api/relation/", controller.RelationData)
 	http.HandleFunc("/map", controller.Map)
@@ -33,7 +28,6 @@ func main() {
 	http.HandleFunc("/api/dates", controller.Dates)
 	http.HandleFunc("/api/relation", controller.Relation)
 	http.HandleFunc("/", controller.Accueil)
->>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 
 	fmt.Println(string(colorGreen), "[SERVER_READY] : on http://localhost:8000 ✅ ")
 	fmt.Println(string(colorYellow), "[SERVER_INFO] : To stop the program : Ctrl + c")
