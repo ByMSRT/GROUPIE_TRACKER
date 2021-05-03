@@ -145,8 +145,8 @@ function elementAPI(elementJSON, relation) {
     let result = [];
     let index, resultpush
 
-    for (index in elementJSON.datesLocations) {
-        resultpush = index + " : " + elementJSON.datesLocations[index]
+    for (index in parseJSON) {
+        resultpush = index + " : " + parseJSON[index]
         result.push(resultpush)
 
     }
