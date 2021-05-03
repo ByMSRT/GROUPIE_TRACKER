@@ -6,6 +6,8 @@ const api = "/api/"
 
 const artist = "artists"
 const location_ = "locations"
+const date = "dates"
+const relation = "relation"
 
 
 
@@ -14,7 +16,6 @@ const searchStates = async searchText => {
     const res_location = await fetch(api + location_);
     const states = await res_artist.json();
     const states2 = await res_location.json();
-    console.log(states2);
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -24,28 +25,30 @@ const searchStates = async searchText => {
         for (let index = 0; index < state.members.length; index++) {
             allMembers += state.members[index]
         }
-        console.log(allMembers)
         let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex) || allMembers.match(regex) || (state.firstAlbum).toString().match(regex)
         return resultOfMatches
 
     });
+
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        return state2.locations[0].match(regex)
+
+        let allLocation = ""
+
+        for (let index = 0; index < state2.locations.length; index++) {
+            allLocation += state2.locations[index]
+        }
+        let resultLocations = allLocation.match(regex);
+        let resultData = JSON.stringify(resultLocations);
+        return resultData
 
     });
-    console.log(matches)
-    console.log(matches2)
-
-
     if (searchText.length === 0) {
         matches = [];
         matches2 = [];
         matchList.innerHTML = '';
     }
-
     outputHtml(matches, matches2);
-
 }
 
 const outputHtml = (matches, matches2) => {
@@ -70,24 +73,32 @@ const outputHtml = (matches, matches2) => {
                         <h3>${match.name}</h3>
                     </div>
                     <div class="read-more-cont">
-                        <p>${match.locations}</p>
+                        <p class="relation" data-url="${match.relations}">...</p>
                     </div>
-                    <button class="btn" type="button">Voir plus ...</button>
+                <button class="btn" type="button">Voir plus ...</button>
                 </div>
         </div>
         
         `).join('');
 
-        /*         const html2 = matches2.map(match2 => `
-                <div class="card" id="card">
+        /* const html2 = matches2.map(match2 => `
+        <div class="card" id="card">
+            <div class="card-header" id="card-header">
+            </div>
+                <div class="card-body" id="card-body">
+                    <div class="popup-header-cont">
+                    </div>
                     <div class="read-more-cont">
                         <p>${match2.locations}</p>
                     </div>
-                </div>
-                `).join(''); */
+                <button class="btn" type="button">Voir plus ...</button>
+            </div>
+        </div>
+         `).join(''); */
 
+        /* console.log(html2) */
         let finalhtml = html /* + html2 */ ;
-        //console.log(finalhtml)
+
         matchList.innerHTML = finalhtml;
     }
 }
@@ -99,9 +110,15 @@ const cardData = document.querySelector(".row");
 const popup = document.querySelector(".popup-box");
 const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
-cardData.addEventListener("click", function(event) {
+cardData.addEventListener("click", async function(event) {
     if (event.target.tagName.toLowerCase() == "button") {
         const item = event.target.parentElement;
+        const relation = item.querySelector(".relation");
+        const pathPart = relation.dataset.url.split("/");
+        let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+        let data = await res.json();
+        elementAPI(data, relation)
+        //relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -120,4 +137,20 @@ popup.addEventListener("click", function(event) {
 
 function popupBox() {
     popup.classList.toggle("open");
+}
+
+function elementAPI(elementJSON, relation) {
+    let json = JSON.stringify(elementJSON.datesLocations)
+    let parseJSON = JSON.parse(json)
+    let result = [];
+    let index, resultpush
+
+    for (index in elementJSON.datesLocations) {
+        resultpush = index + " : " + elementJSON.datesLocations[index]
+        result.push(resultpush)
+
+    }
+
+    relation.innerHTML = result.join(', ')
+    
 }

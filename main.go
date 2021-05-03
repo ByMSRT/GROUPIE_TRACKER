@@ -25,11 +25,13 @@ func main() {
 	http.HandleFunc("/map", controller.Map)
 =======
 
-	http.HandleFunc("/valider", controller.Test)
+	http.HandleFunc("/api/relation/", controller.RelationData)
 	http.HandleFunc("/map", controller.Map)
 	http.HandleFunc("/search", controller.Search)
 	http.HandleFunc("/api/artists", controller.Artists)
 	http.HandleFunc("/api/locations", controller.Locations)
+	http.HandleFunc("/api/dates", controller.Dates)
+	http.HandleFunc("/api/relation", controller.Relation)
 	http.HandleFunc("/", controller.Accueil)
 >>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 
