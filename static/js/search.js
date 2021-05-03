@@ -14,17 +14,8 @@ const relation = "relation"
 const searchStates = async searchText => {
     const res_artist = await fetch(api + artist);
     const res_location = await fetch(api + location_);
-    const res_relation = await fetch(api + relation)
     const states = await res_artist.json();
     const states2 = await res_location.json();
-    const relationConvert = JSON.stringify(res_relation);
-    /*     const states3 = await relationConvert.json(); */
-    console.log(res_artist);
-    console.log(res_location);
-    console.log(res_relation);
-    console.log(states);
-    console.log(states2)
-    console.log(relationConvert);
 
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
@@ -41,7 +32,6 @@ const searchStates = async searchText => {
 
     let matches2 = states2.index.filter(state2 => {
         const regex = new RegExp(`^${searchText}`, 'gi');
-        console.log(states2)
 
         let allLocation = ""
 
@@ -49,24 +39,16 @@ const searchStates = async searchText => {
             allLocation += state2.locations[index]
         }
         let resultLocations = allLocation.match(regex);
-        console.log(resultLocations);
         let resultData = JSON.stringify(resultLocations);
-        console.log(resultData)
         return resultData
 
     });
-    console.log(matches)
-    console.log(matches2)
-
-
     if (searchText.length === 0) {
         matches = [];
         matches2 = [];
         matchList.innerHTML = '';
     }
-
     outputHtml(matches, matches2);
-
 }
 
 const outputHtml = (matches, matches2) => {
@@ -117,7 +99,6 @@ const outputHtml = (matches, matches2) => {
         /* console.log(html2) */
         let finalhtml = html /* + html2 */ ;
 
-        console.log(finalhtml)
         matchList.innerHTML = finalhtml;
     }
 }
