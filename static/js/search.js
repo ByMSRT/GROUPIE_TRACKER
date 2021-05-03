@@ -117,7 +117,8 @@ cardData.addEventListener("click", async function(event) {
         const pathPart = relation.dataset.url.split("/");
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
-        relation.innerHTML = JSON.stringify(data);
+        elementAPI(data, relation)
+        //relation.innerHTML = JSON.stringify(data);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -136,4 +137,20 @@ popup.addEventListener("click", function(event) {
 
 function popupBox() {
     popup.classList.toggle("open");
+}
+
+function elementAPI(elementJSON, relation) {
+    let json = JSON.stringify(elementJSON.datesLocations)
+    let parseJSON = JSON.parse(json)
+    let result = [];
+    let index, resultpush
+
+    for (index in elementJSON.datesLocations) {
+        resultpush = index + " : " + elementJSON.datesLocations[index]
+        result.push(resultpush)
+
+    }
+
+    relation.innerHTML = result.join(', ')
+    
 }
