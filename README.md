@@ -62,7 +62,7 @@ Et voila, vous avez maintenant toute les informations que vous désirez !
 
 Notre code se compose en 4 parties : la partie html, la partie css, la partie go, et la partie js. Les voici expliquées avec plus de détails :
 
-!!!
+----------------------------------pas modifié-----------------------------------------------------
 
 index.html : Ce fichier permet de donner l'apparence voulue au site. 
 
@@ -98,7 +98,7 @@ HTML & CSS : Kévin et Elouan
 
 README : Mathis et Tao
 
-!!!
+----------------------------------pas modifié-----------------------------------------------------
 
 ## Ce qu'on aurait pu améliorer : <a id="ameliorer"></a>
 
