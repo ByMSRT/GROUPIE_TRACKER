@@ -310,6 +310,14 @@ header ul li a {
     font-family: "Nova Round", cursive;
     color: white;
 }
+#page1:hover,
+#page2:hover,
+#page3:hover,
+#page4:hover,
+#page5:hover,
+#page6:hover {
+    font-size: large
+}
 
 #sort {
     display: flex;
@@ -343,6 +351,3 @@ header ul li a {
     justify-content: space-between;
 }
 
-button:hover {
-    font-size: large;
-}
