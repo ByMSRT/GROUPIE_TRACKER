@@ -154,9 +154,3 @@ function elementAPI(elementJSON, relation) {
     relation.innerHTML = result.join(', ')
 
 }
-
-function redirectMap() {
-    let url = new XMLHttpRequest
-    console.log(url.open('POST', "http://localhost:8000/map", true));
-    console.log(url.send());
-}

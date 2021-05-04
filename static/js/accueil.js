@@ -77,9 +77,14 @@ function setupPopup() {
     const popup = document.querySelector(".popup-box");
     const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
-    cardData.addEventListener("click", function(event) {
+    cardData.addEventListener("click", async function(event) {
         if (event.target.tagName.toLowerCase() == "button") {
             const item = event.target.parentElement;
+            const relation = item.querySelector(".relation");
+            const pathPart = relation.dataset.url.split("/");
+            let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+            let data = await res.json();
+            elementAPI(data, relation);
             const h3 = item.querySelector(".popup-header-cont").innerHTML;
             const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
             popup.querySelector(".popup-header").innerHTML = h3;
@@ -97,6 +102,21 @@ function setupPopup() {
     })
 }
 
+function elementAPI(elementJSON, relation) {
+    let json = JSON.stringify(elementJSON.datesLocations)
+    let parseJSON = JSON.parse(json)
+    let result = [];
+    let index, resultpush
+
+    for (index in parseJSON) {
+        resultpush = index + " : " + parseJSON[index]
+        result.push(resultpush)
+
+    }
+
+    relation.innerHTML = result.join(', ')
+
+}
 // const cardData = document.querySelector(".row");
 // const popup = document.querySelector(".popup-box");
 // const popupCloseBtn = popup.querySelector(".popup-close-btn")
