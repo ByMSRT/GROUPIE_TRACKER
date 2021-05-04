@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -14,7 +12,7 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	custTemplate, err := template.ParseFiles("./templates/accueilv2.html")
 
 	if err != nil {
-		codeErreur(w, r, 404, "Template not found")
+		codeErreur(w, r, 404, "Template not found : accueilv2.html")
 		return
 	}
 
@@ -22,10 +20,10 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 }
 
 func Map(w http.ResponseWriter, r *http.Request) {
-	custTemplate, err := template.ParseFiles("./templates/map.html", "./templates/navigation.html")
+	custTemplate, err := template.ParseFiles("./templates/map.html")
 
 	if err != nil {
-		codeErreur(w, r, 404, "Template not found")
+		codeErreur(w, r, 404, "Template not found : map.html")
 		return
 	}
 	err = custTemplate.Execute(w, nil)
@@ -35,7 +33,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	custTemplate, err := template.ParseFiles("./templates/searchv2.html")
 
 	if err != nil {
-		codeErreur(w, r, 404, "Template not found")
+		codeErreur(w, r, 404, "Template not found : searchv2.html")
 		return
 	}
 	err = custTemplate.Execute(w, nil)
@@ -60,14 +58,14 @@ func loadApi(w http.ResponseWriter, r *http.Request, endpoint string) {
 	response, err := http.Get("https://groupietrackers.herokuapp.com/api/" + endpoint)
 
 	if err != nil {
-		codeErreur(w, r, 500, "upstream")
+		codeErreur(w, r, 500, "Server API is not responding")
 		return
 	}
 
 	responseData, err := ioutil.ReadAll(response.Body)
 
 	if err != nil {
-		codeErreur(w, r, 500, "no data")
+		codeErreur(w, r, 500, "No data to sent")
 		return
 	}
 
@@ -96,14 +94,15 @@ func getId(w http.ResponseWriter, r *http.Request, id string) {
 	response, err := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
 
 	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
+		codeErreur(w, r, 500, "Server API is not responding")
+		return
 	}
 
 	responseData, err := ioutil.ReadAll(response.Body)
 
 	if err != nil {
-		log.Fatal(err)
+		codeErreur(w, r, 500, "No data to sent")
+		return
 	}
 
 	w.Header().Add("Content-Type", "application/json")
