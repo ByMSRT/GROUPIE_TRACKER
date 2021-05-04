@@ -62,7 +62,9 @@ Et voila, vous avez maintenant toute les informations que vous désirez !
 
 Notre code se compose en 4 parties : la partie html, la partie css, la partie go, et la partie js. Les voici expliquées avec plus de détails :
 
-!!!index.html : Ce fichier permet de donner l'apparence voulue au site. 
+!!!
+
+index.html : Ce fichier permet de donner l'apparence voulue au site. 
 
 
 style.css : Stylisé la page web.
