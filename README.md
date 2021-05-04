@@ -34,9 +34,8 @@ C'est un travail de groupe dans lequel nous avons dû coder en JavaScript, en Go
 ## Son intérêt : <a id="interet"></a>
 
 
-Lorsqu'on a des concerts auxquels on souhaite assister, on ne peut pas se permettre de perdre son temps à chercher n'importe où sur internet! Ce site permet de remédier à cette entrave, et fait gagner beaucoup de temps à nous autres, fans de musique. Il nous permet de retrouver des groupes en fonction de: leur nom, le nom de, leur photo, leur réelle identité, leur race, leur gabarit, et même leur lieu de naissance !
-Cependant, il est possible que vous ne vous intéressiez pas à une personne en particulier. Dans ce cas, vous pourrez chercher par ordre croissant ou décroissant, en fonction de la statistique voulue: si vous voulez savoir qui est le plus intelligent, on encore qui est le plus faible?
-De plus, si vous souhaitez vous préparer au combat, mais que vous avez besoin d'alliés adaptés à la situation, et bien vous pouvez faire exactement la même chose, mais en recherchant des méchants, pour ainsi travailler avec les plus efficaces d'entre eux qui ont un intérêt commun avec vous !
+Lorsqu'on a des concerts auxquels on souhaite assister, on ne peut pas se permettre de perdre son temps à chercher n'importe où sur internet! Ce site permet de remédier à cette entrave, et fait gagner beaucoup de temps à nous autres, fans de musique. Il nous permet de retrouver des groupes en fonction de: leur nom, leur date de création, le nom de leurs membres, et la date de sortie de leur premier album !
+De plus, si vous souhaitez vous préparer pour le prochain concert de votre groupe numéro 1, mais que vous avez besoin d'informations sur la sate et le lieu, et bien c'est possible, grâce aux informations répertoriés sur le site, en plus de la carte qui y est intégrée !
 
 
 ## Son utilisation : <a id="utilisation"></a>
@@ -44,14 +43,14 @@ De plus, si vous souhaitez vous préparer au combat, mais que vous avez besoin d
 
 Notre site est créé de manière ergonomique et simple à prendre en main.
 
-Une fois arrivé sur le site, vous pouvez comme bon vous semble monter et descendre dans la liste des super héros et vilains et connaitre leurs caractéristiques.
-![image](https://media.discordapp.net/attachments/408320873876160522/829390676121616384/unknown.png?width=1366&height=670)
+Une fois arrivé sur le site, vous pouvez comme bon vous semble monter et descendre dans la liste des des groupes pour connaitres leurs caractéristiques 
+![image](https://media.discordapp.net/attachments/408320873876160522/839029999205613578/unknown.png?width=1440&height=635)
 
-En revanche, si vous souhaitez faire des recherches plus ciblés, cliquez sur le bouton à droite de "Choisir le nombre de résultats sur la page :"; et sélectionnez le nombre de résultats voulus:
+En revanche, si vous souhaitez faire des recherches plus ciblés, cliquez sur les différentes options qui vous intéresse:
 
-![Page Size](static/Images/unknown.png)
+![image](https://cdn.discordapp.com/attachments/408320873876160522/839029623617617930/unknown.png
 
-Ensuite, taper les premières lettres (ou le nom complet) du personnage sur lequel vous souhaitez en apprendre plus:
+Ensuite, choisissez le numéro de la page que vous souhaiter vérifier, dans le cas où il y aurait trop de résultats:
 ![image](https://media.discordapp.net/attachments/408320873876160522/829392050461868042/image0.png)
 
 Et voila, vous avez maintenant toute les informations que vous désirez !

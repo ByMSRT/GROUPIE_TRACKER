@@ -13,17 +13,18 @@ async function data(url) {
 
     const dataArtist = await res_artist.json();
     console.log(dataArtist);
-    if (res_artist) {
-        hideloader();
-    }
+    // if (res_artist) {
+    //     hideloader();
+    // }
     show(dataArtist);
+    setupPopup()
 }
 
 data(api + artist);
 
-function hideloader() {
-    document.getElementById('loading').style.display = 'none'
-}
+// function hideloader() {
+//     document.getElementById('loading').style.display = 'none'
+// }
 
 var arr // Notre tableau final avec les cartes des groupes
 var mini // Valeur du select de la date minimum
@@ -59,45 +60,69 @@ function show(dataArtist) {
                     <h3>${match.name}</h3>
                 </div>
                 <div class="read-more-cont">
-                    <p>Test</p>
+                    <p class="relation" data-url="${match.relations}">...</p>
                 </div>
             <button class="btn" type="button">Voir plus ...</button>
             </div>
     </div>
     `);
-    SelectionArtist(dataArtist);
-
-    matchList.innerHTML = arr.join(''); // On join notre tableau pour avoir un affichage sans "," et correct
+    SelectionArtist(dataArtist)
+    let nbrPage = Math.ceil(arr.length / 10)
+    PageNumber(nbrPage)
+    matchList.innerHTML = arr.slice(0, 10).join(''); // On join notre tableau pour avoir un affichage sans "," et correct
 }
 
+function setupPopup() {
+    const cardData = document.querySelector(".row");
+    const popup = document.querySelector(".popup-box");
+    const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
+    cardData.addEventListener("click", function(event) {
+        if (event.target.tagName.toLowerCase() == "button") {
+            const item = event.target.parentElement;
+            const h3 = item.querySelector(".popup-header-cont").innerHTML;
+            const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+            popup.querySelector(".popup-header").innerHTML = h3;
+            popup.querySelector(".popup-body").innerHTML = readMoreCont
+            popup.classList.toggle("open");
+        }
+    })
 
-const cardData = document.querySelector(".row");
-const popup = document.querySelector(".popup-box");
-const popupCloseBtn = popup.querySelector(".popup-close-btn")
+    popupCloseBtn.addEventListener("click", () => { popup.classList.toggle("open"); });
 
-cardData.addEventListener("click", function(event) {
-    if (event.target.tagName.toLowerCase() == "button") {
-        const item = event.target.parentElement;
-        const h3 = item.querySelector(".popup-header-cont").innerHTML;
-        const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
-        popup.querySelector(".popup-header").innerHTML = h3;
-        popup.querySelector(".popup-body").innerHTML = readMoreCont
-        popupBox();
-    }
-})
-
-popupCloseBtn.addEventListener("click", popupBox);
-
-popup.addEventListener("click", function(event) {
-    if (event.target == popup) {
-        popupBox();
-    }
-})
-
-function popupBox() {
-    popup.classList.toggle("open");
+    popup.addEventListener("click", function(event) {
+        if (event.target == popup) {
+            popup.classList.toggle("open");
+        }
+    })
 }
+
+// const cardData = document.querySelector(".row");
+// const popup = document.querySelector(".popup-box");
+// const popupCloseBtn = popup.querySelector(".popup-close-btn")
+// console.log("coucou2")
+// cardData.addEventListener("click", function(event) {
+//     if (event.target.tagName.toLowerCase() == "button") {
+//         const item = event.target.parentElement;
+//         const h3 = item.querySelector(".popup-header-cont").innerHTML;
+//         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+//         popup.querySelector(".popup-header").innerHTML = h3;
+//         popup.querySelector(".popup-body").innerHTML = readMoreCont
+//         popupBox();
+//     }
+// })
+
+// popupCloseBtn.addEventListener("click", popupBox);
+
+// popup.addEventListener("click", function(event) {
+//     if (event.target == popup) {
+//         popupBox();
+//     }
+// })
+
+// function popupBox() {
+//     popup.classList.toggle("open");
+// }
 
 var min = document.getElementById("mini")
 var max = document.getElementById("maxi")
@@ -182,7 +207,9 @@ function SelectionArtist(dataArtist) {
                             const Album = dataArtist[l].firstAlbum.split('-')
                             const YearOfAlbum = Album[2]
                             if (YearOfAlbum == z) { // Si la date du 1er albulm = une date entre 1958 et le range 
+                                // if (arr.length < 10){
                                 arr.push(tab[l]) // On push dans arr(tableau vide) la carte de tel artiste si tout les filtres sont checked
+                                    // }
                             }
                         }
                     }
@@ -216,4 +243,38 @@ output.innerHTML = range.value
 
 range.oninput = function() {
     output.innerHTML = this.value
+}
+
+let contener = document.getElementById("PageChoosing")
+
+function PageNumber(param) {
+    contener.innerHTML = ""
+    for (let index = 1; index <= param; index++) {
+        let page = document.createElement("button")
+        page.setAttribute("onclick", "test(" + index + ")")
+        page.id = "page" + index
+        page.innerText = index
+        contener.appendChild(page)
+    }
+}
+
+var arrBis = []
+
+function test(param) {
+    console.log(param)
+    matchList.innerHTML = ""
+    if (param == 1) {
+        arrBis = arr.slice(0, 10)
+    } else if (param == 2) {
+        arrBis = arr.slice(10, 20)
+    } else if (param == 3) {
+        arrBis = arr.slice(20, 30)
+    } else if (param == 4) {
+        arrBis = arr.slice(30, 40)
+    } else if (param == 5) {
+        arrBis = arr.slice(40, 50)
+    } else {
+        arrBis = arr.slice(50)
+    }
+    matchList.innerHTML = arrBis.join('');
 }

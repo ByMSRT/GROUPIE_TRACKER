@@ -2,11 +2,7 @@ const search = document.getElementById('search');
 const matchList = document.getElementById('card-data');
 
 
-<<<<<<< HEAD
-const api_artists = "https://cors-anywhere.herokuapp.com/https://groupietrackers.herokuapp.com/api/"
-=======
 const api = "/api/"
->>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 
 const artist = "artists"
 const location_ = "locations"
@@ -109,6 +105,7 @@ const outputHtml = (matches, matches2) => {
                     </div>
                     <div class="read-more-cont">
                         <p class="relation" data-url="${match.relations}">...</p>
+                        <button class="btn_map" type="button" onclick=redirectMap() >Accéder à la map</button>
                     </div>
 <<<<<<< HEAD
                     <button class="btn" type="button">Voir plus ...</button>
@@ -188,7 +185,7 @@ cardData.addEventListener("click", async function(event) {
         const pathPart = relation.dataset.url.split("/");
         let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
         let data = await res.json();
-        relation.innerHTML = JSON.stringify(data);
+        elementAPI(data, relation);
         const h3 = item.querySelector(".popup-header-cont").innerHTML;
         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
         popup.querySelector(".popup-header").innerHTML = h3;
@@ -208,4 +205,29 @@ popup.addEventListener("click", function(event) {
 function popupBox() {
     popup.classList.toggle("open");
 }
+<<<<<<< HEAD
 >>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
+=======
+
+function elementAPI(elementJSON, relation) {
+    let json = JSON.stringify(elementJSON.datesLocations)
+    let parseJSON = JSON.parse(json)
+    let result = [];
+    let index, resultpush
+
+    for (index in parseJSON) {
+        resultpush = index + " : " + parseJSON[index]
+        result.push(resultpush)
+
+    }
+
+    relation.innerHTML = result.join(', ')
+
+}
+
+function redirectMap() {
+    let url = new XMLHttpRequest
+    console.log(url.open('POST', "http://localhost:8000/map", true));
+    console.log(url.send());
+}
+>>>>>>> 6a05019eecc4492b4f8854569f9d42db51b79b0e
