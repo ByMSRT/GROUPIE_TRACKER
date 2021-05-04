@@ -16,7 +16,7 @@
 <body>
     <div class="wrap">
         <header>
-            <img src="../static/img/logo.png" class="test">
+            <img src="../static/img/logo.png" class="logoaccueil">
             <div class="menu">
                 <ul>
                     <li>
@@ -47,6 +47,8 @@
 
 
     <div class="sort-by-date">
+        <p>test </p>
+        <p>test </p>
         <p>Création du groupe : </p>
         <label>  Date minimum du tri : </label>
         <div class="min" id="mini"></div>
@@ -64,7 +66,7 @@
     <div class="sort-by-date-FirstAlbulm">
         <p>Date de sortie du 1er albulm : </p>
         <input type="range" id="input-range" class="range" min="1958" max="2021" value="2021" onchange="show()">
-        <p>Date choisis : <span id="dateOutput"></span></p>
+        <p>Date choisis : avant <span id="dateOutput"></span></p>
     </div>
 
     <div id="PageChoosing"></div>
@@ -72,6 +74,10 @@
     <div class="container">
         <div class="heading">
             <h1>Résultats : </h1>
+            <select name="select" onchange="updated(this)">
+                <option value="1">Rechercher par:</option>
+                <option value="2">Nom de groupe</option>
+            </select>
         </div>
         <div class="row" id="card-data">
 

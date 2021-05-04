@@ -1,24 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+    "fmt"
+    "net/http"
 
-	controller "./controller"
+    controller "./controller"
 )
 
 func main() {
 
-	colorGreen := "\033[32m"
-	colorBlue := "\033[34m"
-	colorYellow := "\033[33m"
+    colorGreen := "\033[32m"
+    colorBlue := "\033[34m"
+    colorYellow := "\033[33m"
 
-	fmt.Println(string(colorBlue), "[SERVER_INFO] : Starting local Server...")
+    fmt.Println(string(colorBlue), "[SERVER_INFO] : Starting local Server...")
 
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+    fs := http.FileServer(http.Dir("static"))
+    http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	//http.HandleFunc("/", route)
+    //http.HandleFunc("/", route)
 
 	http.HandleFunc("/api/relation/", controller.RelationData)
 	http.HandleFunc("/map", controller.Map)
@@ -29,8 +29,8 @@ func main() {
 	http.HandleFunc("/api/relation", controller.Relation)
 	http.HandleFunc("/", controller.Accueil)
 
-	fmt.Println(string(colorGreen), "[SERVER_READY] : on http://localhost:8000 ✅ ")
-	fmt.Println(string(colorYellow), "[SERVER_INFO] : To stop the program : Ctrl + c")
-	http.ListenAndServe(":8000", nil)
+    fmt.Println(string(colorGreen), "[SERVER_READY] : on http://localhost:8000 ✅ ")
+    fmt.Println(string(colorYellow), "[SERVER_INFO] : To stop the program : Ctrl + c")
+    http.ListenAndServe(":8000", nil)
 
 }

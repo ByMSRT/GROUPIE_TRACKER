@@ -1,0 +1,12 @@
+#Card {
+    display: flex; 
+    height: 650px;
+    width: 400px;
+    background-color:yellowgreen;
+    flex-direction: column;
+}
+
+.Logo {
+    height: 50px;
+    width: 50px;
+}
