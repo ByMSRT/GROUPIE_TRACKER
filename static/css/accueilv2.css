@@ -26,7 +26,7 @@ h6 {
     background-blend-mode: overlay;
 }
 
-.logoaccueil {
+.test {
     height: 50px;
     width: 50px;
 }
@@ -310,6 +310,7 @@ header ul li a {
     font-family: "Nova Round", cursive;
     color: white;
 }
+
 #page1:hover,
 #page2:hover,
 #page3:hover,
@@ -350,4 +351,3 @@ header ul li a {
     width: 30%;
     justify-content: space-between;
 }
-
