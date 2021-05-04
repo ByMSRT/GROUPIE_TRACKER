@@ -223,6 +223,7 @@ function elementAPI(elementJSON, relation) {
 
     relation.innerHTML = result.join(', ')
 
+<<<<<<< HEAD
 }
 
 function redirectMap() {
@@ -231,3 +232,6 @@ function redirectMap() {
     console.log(url.send());
 }
 >>>>>>> 6a05019eecc4492b4f8854569f9d42db51b79b0e
+=======
+}
+>>>>>>> 71f90ac5347a904475f97677dc8e8b3605386ff7

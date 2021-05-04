@@ -48,7 +48,7 @@ Une fois arrivé sur le site, vous pouvez comme bon vous semble monter et descen
 
 En revanche, si vous souhaitez faire des recherches plus ciblés, cliquez sur les différentes options qui vous intéresse:
 
-![image](https://cdn.discordapp.com/attachments/408320873876160522/839029623617617930/unknown.png
+![image](https://cdn.discordapp.com/attachments/408320873876160522/839029623617617930/unknown.png)
 
 Ensuite, choisissez le numéro de la page que vous souhaiter vérifier, dans le cas où il y aurait trop de résultats:
 ![image](https://media.discordapp.net/attachments/408320873876160522/829392050461868042/image0.png)
