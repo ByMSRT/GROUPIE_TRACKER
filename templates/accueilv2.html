@@ -16,7 +16,7 @@
 <body>
     <div class="wrap">
         <header>
-            <img src="../static/img/logo.png" class="test">
+            <img src="../static/img/logo.png" class="logoaccueil">
             <div class="menu">
                 <ul>
                     <li>
@@ -45,6 +45,7 @@
 
     </div>
 
+
     <div id="sort">
         <div class="sort-by-date">
             <p>Création du groupe : </p>
@@ -52,6 +53,7 @@
             <div class="min" id="mini"></div>
             <label>  et </label>
             <div class="max" id="maxi"></div>
+
         </div>
     
         <div class="exp">
@@ -70,10 +72,13 @@
         <div id="PageChoosing"></div>
     </div>
     
-
     <div class="container">
         <div class="heading">
             <h1>Résultats : </h1>
+            <select name="select" onchange="updated(this)">
+                <option value="1">Rechercher par:</option>
+                <option value="2">Nom de groupe</option>
+            </select>
         </div>
         <div class="row" id="card-data">
 
