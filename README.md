@@ -60,9 +60,9 @@ Et voila, vous avez maintenant toute les informations que vous désirez !
 
 ## Les détails de notre code : <a id="detail"></a>
 
-Notre code se compose en 3 parties : la partie html, la partie css, et la partie js. Les voici expliquées avec plus de détails :
+Notre code se compose en 4 parties : la partie html, la partie css, la partie go, et la partie js. Les voici expliquées avec plus de détails :
 
-index.html : Ce fichier permet de donner l'apparence voulue au site. 
+!!!index.html : Ce fichier permet de donner l'apparence voulue au site. 
 
 
 style.css : Stylisé la page web.
@@ -95,9 +95,12 @@ Display : Tao et Elouan
 HTML & CSS : Kévin et Elouan
 
 README : Mathis et Tao
+!!!
 
 ## Ce qu'on aurait pu améliorer : <a id="ameliorer"></a>
 
-* Approfondir la fonction SORT
+* Le filter en go, permettant d'éviter les requettes trop grosses
 
-* Une fonction pagination
+* La recherche en go
+
+* La map
