@@ -144,6 +144,33 @@ function elementAPI(elementJSON, relation) {
 //     popup.classList.toggle("open");
 // }
 
+// const cardData = document.querySelector(".row");
+// const popup = document.querySelector(".popup-box");
+// const popupCloseBtn = popup.querySelector(".popup-close-btn")
+// console.log("coucou2")
+// cardData.addEventListener("click", function(event) {
+//     if (event.target.tagName.toLowerCase() == "button") {
+//         const item = event.target.parentElement;
+//         const h3 = item.querySelector(".popup-header-cont").innerHTML;
+//         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+//         popup.querySelector(".popup-header").innerHTML = h3;
+//         popup.querySelector(".popup-body").innerHTML = readMoreCont
+//         popupBox();
+//     }
+// })
+
+// popupCloseBtn.addEventListener("click", popupBox);
+
+// popup.addEventListener("click", function(event) {
+//     if (event.target == popup) {
+//         popupBox();
+//     }
+// })
+
+// function popupBox() {
+//     popup.classList.toggle("open");
+// }
+
 var min = document.getElementById("mini")
 var max = document.getElementById("maxi")
 
@@ -273,7 +300,7 @@ function PageNumber(param) {
         let page = document.createElement("button")
         page.setAttribute("onclick", "test(" + index + ")")
         page.id = "page" + index
-        page.innerText = index
+        page.innerText = "Page n° " + index
         contener.appendChild(page)
     }
 }
