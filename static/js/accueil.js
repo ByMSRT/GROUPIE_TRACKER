@@ -251,7 +251,7 @@ function PageNumber(param){
         let page = document.createElement("button")
         page.setAttribute("onclick", "test("+ index + ")")
         page.id = "page" + index
-        page.innerText = index
+        page.innerText = "Page n° " + index
         contener.appendChild(page)
     }
 }
