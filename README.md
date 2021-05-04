@@ -51,13 +51,11 @@ En revanche, si vous souhaitez faire des recherches plus ciblés, cliquez sur le
 ![image](https://cdn.discordapp.com/attachments/408320873876160522/839029623617617930/unknown.png)
 
 Ensuite, choisissez le numéro de la page que vous souhaiter vérifier, dans le cas où il y aurait trop de résultats:
-![image](https://media.discordapp.net/attachments/408320873876160522/829392050461868042/image0.png)
+![image](https://cdn.discordapp.com/attachments/826340732117712916/839033588153581588/unknown.png)
 
 Et voila, vous avez maintenant toute les informations que vous désirez !
 
-![image](https://media.discordapp.net/attachments/408320873876160522/829392426833412126/unknown.png?width=1440&height=140)
-
- (sauf apparement la race de Chuck Norris, que personne connait à ce jour)
+![image](https://cdn.discordapp.com/attachments/408320873876160522/839033994502471710/unknown.png)
 
 
 ## Les détails de notre code : <a id="detail"></a>
