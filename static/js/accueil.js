@@ -111,7 +111,7 @@ function elementAPI(elementJSON, relation) {
         result.push(resultpush)
 
     }
-    
+
     relation.innerHTML = result.join(', ')
 
 }
