@@ -17,7 +17,7 @@ Le projet **Groupie Tracker** consistait à recevoir une API donnée et manipule
 
     ![exemple](https://cdn.discordapp.com/attachments/826340732117712916/839429860706615306/Capture_decran_2021-05-05_a_11.14.18.png)
 
-* Recherche agit sur (Raffraichissement dynamique):
+* Recherche agit sur (Raffraichissement dynamique) :
     * Le nom du groupe
     * La date de création
     * Le nom des membres
@@ -25,7 +25,7 @@ Le projet **Groupie Tracker** consistait à recevoir une API donnée et manipule
 
     ![exemple](https://cdn.discordapp.com/attachments/826340732117712916/839433027012657158/Capture_decran_2021-05-05_a_11.26.54.png)
 
-* Filtrage (Raffraichissement dynamique): 
+* Filtrage (Raffraichissement dynamique) : 
     * Avec un système de pagination en fonction du nombre de résultat afficher (10 max/pages & interaction avec le filtre)
 
         * La date de création du groupe (Select input)
@@ -60,7 +60,7 @@ Tout d'abord, pour tester notre site web, veillez à télécharger l'intégralit
 
 Pour lancer le serveur, il vous suffit d'utiliser la commande suivante dans votre terminal : ``go run main.go``. 
 
-*⚠️ Pour les utilisateurs Mac possédant une erreur lors de l'éxécution de cette commande, suivez les instructions suivantes dans votre terminal :*
+*⚠️ Pour les utilisateurs Mac possédant une erreur lors de l'éxécution de cette commande, suivez les instructions suivantes :*
 
 - ``env GO111MODULE=off go build main.go``
 - ``./main``
