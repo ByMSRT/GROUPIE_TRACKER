@@ -1,5 +1,6 @@
-const matchList = document.getElementById('card-data');
+const matchList = document.getElementById('card-data'); // Permet d'indiquer ou se mettrons les cartes des artistes
 
+// Permet de créer les différents chemins de l'API venant de notre serveur
 const api = "/api/"
 
 const artist = "artists"
@@ -8,35 +9,29 @@ const date = "dates"
 const relation = "relation"
 
 
+// Fonction asynchrone qui s'exécute ligne par ligne 
 async function data(url) {
+    // Permet de récupérer les données de l'API en JSON
     const res_artist = await fetch(url);
-
     const dataArtist = await res_artist.json();
-    console.log(dataArtist);
-    // if (res_artist) {
-    //     hideloader();
-    // }
+    // Appelle de function permettant la création de la carte avec son contenu mais aussi la création de la pop-up avec son contenu
     show(dataArtist);
     setupPopup()
 }
 
 data(api + artist);
 
-// function hideloader() {
-//     document.getElementById('loading').style.display = 'none'
-// }
 
-var arr // Notre tableau final avec les cartes des groupes
-var mini // Valeur du select de la date minimum
-var maxi // Valeur du select de la date maximum
-var tab // Un tableau dans lequel on va mettre toutes les cartes des artistes à aller chercher à la fin pour push dans arr
-var ArrOfMembers // Un tableau dans lequel est inscrit toutes les valeurs des checkbox pour savoir quel nombre de membre l'utilisateur veut.
+var arr; // Notre tableau final avec les cartes des groupes
+var mini; // Valeur du select de la date minimum
+var maxi; // Valeur du select de la date maximum
+var tab; // Un tableau dans lequel on va mettre toutes les cartes des artistes à aller chercher à la fin pour push dans arr
+var ArrOfMembers; // Un tableau dans lequel est inscrit toutes les valeurs des checkbox pour savoir quel nombre de membre l'utilisateur veut.
 
 function show(dataArtist) {
     if (dataArtist == undefined) { // dataArtist est undefined après utilisation d'un filtre donc on le redéfini s'il est undefined
         data(api + artist)
     }
-    console.log(output.innerHTML)
     arr = []
     tab = []
     mini = document.getElementById("Selectmini").value
@@ -68,31 +63,32 @@ function show(dataArtist) {
     `);
     SelectionArtist(dataArtist)
     let nbrPage = Math.ceil(arr.length / 10)
-    PageNumber(nbrPage)
-    matchList.innerHTML = arr.slice(0, 10).join(''); // On join notre tableau pour avoir un affichage sans "," et correct
+    pageNumber(nbrPage)
+    matchList.innerHTML = arr.slice(0, 10).join(''); // On join notre tableau de 10 résultats par page pour avoir un affichage sans "," et correct
 }
-
+// Fonction pour initialiser la pop-up
 function setupPopup() {
     const cardData = document.querySelector(".row");
     const popup = document.querySelector(".popup-box");
     const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
+    // Création d'un évènement qui va afficher le contenu d'une API dans la pop-up lors d'un click
     cardData.addEventListener("click", async function(event) {
-        if (event.target.tagName.toLowerCase() == "button") {
-            const item = event.target.parentElement;
-            const relation = item.querySelector(".relation");
-            const pathPart = relation.dataset.url.split("/");
-            let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
-            let data = await res.json();
-            elementAPI(data, relation);
-            const h3 = item.querySelector(".popup-header-cont").innerHTML;
-            const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
-            popup.querySelector(".popup-header").innerHTML = h3;
-            popup.querySelector(".popup-body").innerHTML = readMoreCont
-            popup.classList.toggle("open");
-        }
-    })
-
+            if (event.target.tagName.toLowerCase() == "button") {
+                const item = event.target.parentElement;
+                const relation = item.querySelector(".relation");
+                const pathPart = relation.dataset.url.split("/");
+                let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+                let data = await res.json();
+                elementAPI(data, relation);
+                const h3 = item.querySelector(".popup-header-cont").innerHTML;
+                const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
+                popup.querySelector(".popup-header").innerHTML = h3;
+                popup.querySelector(".popup-body").innerHTML = readMoreCont
+                popup.classList.toggle("open");
+            }
+        })
+        // Création d'un événement pour l'ouverture/fermeture de la pop-up
     popupCloseBtn.addEventListener("click", () => { popup.classList.toggle("open"); });
 
     popup.addEventListener("click", function(event) {
@@ -103,77 +99,27 @@ function setupPopup() {
 }
 
 function elementAPI(elementJSON, relation) {
+    // Transformer le JSON en string
     let json = JSON.stringify(elementJSON.datesLocations)
+        //Analyse de la string créer précédemment
     let parseJSON = JSON.parse(json)
     let result = [];
     let index, resultpush
 
+    // Récupération de chaque clé et valeur du fichier JSON
     for (index in parseJSON) {
         resultpush = index + " : " + parseJSON[index]
         result.push(resultpush)
 
     }
-
     relation.innerHTML = result.join(', ')
 
 }
-// const cardData = document.querySelector(".row");
-// const popup = document.querySelector(".popup-box");
-// const popupCloseBtn = popup.querySelector(".popup-close-btn")
-// console.log("coucou2")
-// cardData.addEventListener("click", function(event) {
-//     if (event.target.tagName.toLowerCase() == "button") {
-//         const item = event.target.parentElement;
-//         const h3 = item.querySelector(".popup-header-cont").innerHTML;
-//         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
-//         popup.querySelector(".popup-header").innerHTML = h3;
-//         popup.querySelector(".popup-body").innerHTML = readMoreCont
-//         popupBox();
-//     }
-// })
-
-// popupCloseBtn.addEventListener("click", popupBox);
-
-// popup.addEventListener("click", function(event) {
-//     if (event.target == popup) {
-//         popupBox();
-//     }
-// })
-
-// function popupBox() {
-//     popup.classList.toggle("open");
-// }
-
-// const cardData = document.querySelector(".row");
-// const popup = document.querySelector(".popup-box");
-// const popupCloseBtn = popup.querySelector(".popup-close-btn")
-// console.log("coucou2")
-// cardData.addEventListener("click", function(event) {
-//     if (event.target.tagName.toLowerCase() == "button") {
-//         const item = event.target.parentElement;
-//         const h3 = item.querySelector(".popup-header-cont").innerHTML;
-//         const readMoreCont = item.querySelector(".read-more-cont").innerHTML;
-//         popup.querySelector(".popup-header").innerHTML = h3;
-//         popup.querySelector(".popup-body").innerHTML = readMoreCont
-//         popupBox();
-//     }
-// })
-
-// popupCloseBtn.addEventListener("click", popupBox);
-
-// popup.addEventListener("click", function(event) {
-//     if (event.target == popup) {
-//         popupBox();
-//     }
-// })
-
-// function popupBox() {
-//     popup.classList.toggle("open");
-// }
 
 var min = document.getElementById("mini")
 var max = document.getElementById("maxi")
 
+// Création menu déroulant, permettant le tri des artiste(s)/groupes selon la dates de création 
 function minOrMax(param) {
     let select = document.createElement("select")
     select.id = "Select" + param.id
@@ -207,7 +153,7 @@ function maximum(param) {
 
 minOrMax(min)
 minOrMax(max)
-
+    // Fonction permettant de filtrer le nombre de membres par groupes
 function selectionArtistWithMembers() {
     let index
     for (index = 1; index <= 9; index++) {
@@ -215,7 +161,7 @@ function selectionArtistWithMembers() {
             //La valeur de chaque bouton seront donné grâce à index
             selectMembers(index, index)
         } else {
-            // Appel de fonction selectMembers avec la valeur 0, qui changera avec la fonction PushOnArr
+            // Appel de fonction selectMembers avec la valeur 0, qui changera avec la fonction pushOnArr
             selectMembers("AllMembers", 0)
         }
     }
@@ -233,7 +179,7 @@ function selectMembers(name, value) {
         check.checked = true
     }
     check.setAttribute("type", "checkbox")
-    check.setAttribute("onclick", "PushOnArr()")
+    check.setAttribute("onclick", "pushOnArr()")
     check.setAttribute("onclick", "show()")
     MemberSort.appendChild(label)
     MemberSort.appendChild(check)
@@ -242,9 +188,7 @@ function selectMembers(name, value) {
 selectionArtistWithMembers()
 
 function SelectionArtist(dataArtist) {
-    const test = dataArtist[0].firstAlbum.split('-')
-    console.log(test[2])
-    PushOnArr()
+    pushOnArr()
     for (let i = mini; i <= maxi; i++) { // i correspond à toutes les années entre le 1er select et le second
         for (let l = 0; l < dataArtist.length; l++) { // l correspond à chaque carte d'artistes
             if (dataArtist[l].creationDate == i) { // Si la date de creation du groupe de tel artiste = une année entre le mini et le maxi
@@ -266,7 +210,8 @@ function SelectionArtist(dataArtist) {
     }
 }
 
-function PushOnArr() {
+// Fonction qui renvoyé la valeur des Checkbox à la fonction ci-dessus
+function pushOnArr() {
     ArrOfMembers = [];
     for (let NbrDeCheckbox = 1; NbrDeCheckbox <= 8; NbrDeCheckbox++) {
         if (document.getElementById("Checkbox" + NbrDeCheckbox).checked === true) {
@@ -294,11 +239,12 @@ range.oninput = function() {
 
 let contener = document.getElementById("PageChoosing")
 
-function PageNumber(param) {
+// Fonction qui récupère le nombre de page à générer par rapport aux nombres d'artistes affichés
+function pageNumber(param) {
     contener.innerHTML = ""
     for (let index = 1; index <= param; index++) {
         let page = document.createElement("button")
-        page.setAttribute("onclick", "test(" + index + ")")
+        page.setAttribute("onclick", "pagination(" + index + ")")
         page.id = "page" + index
         page.innerText = "Page n° " + index
         contener.appendChild(page)
@@ -307,8 +253,8 @@ function PageNumber(param) {
 
 var arrBis = []
 
-function test(param) {
-    console.log(param)
+// Fonction pour la pagination
+function pagination(param) {
     matchList.innerHTML = ""
     if (param == 1) {
         arrBis = arr.slice(0, 10)

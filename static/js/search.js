@@ -1,7 +1,7 @@
-const search = document.getElementById('search');
-const matchList = document.getElementById('card-data');
+const search = document.getElementById('search'); // Permet d'avoir l'input de recherche et d'agir dessus
+const matchList = document.getElementById('card-data'); // Permet d'indiquer ou se mettrons les cartes des artistes
 
-
+// Permet de créer les différents chemins de l'API venant de notre serveur
 const api = "/api/"
 
 const artist = "artists"
@@ -10,49 +10,33 @@ const date = "dates"
 const relation = "relation"
 
 
-
-const searchStates = async searchText => {
+// Fonction asynchrone qui va récuperer les données de l'API de notre serveur et nous renvoie un "JSON Object"
+const searchArtists = async searchText => {
     const res_artist = await fetch(api + artist);
-    const res_location = await fetch(api + location_);
-    const states = await res_artist.json();
-    const states2 = await res_location.json();
-
-    let matches = states.filter(state => {
+    const artistsData = await res_artist.json();
+    // Système de recheche avec regex qui agit sur l'API "artist"
+    let matches = artistsData.filter(data => {
         const regex = new RegExp(`^${searchText}`, 'gi');
 
         let allMembers = ""
-
-        for (let index = 0; index < state.members.length; index++) {
-            allMembers += state.members[index]
+            // On parcourt le tableau de membres
+        for (let index = 0; index < data.members.length; index++) {
+            allMembers += data.members[index]
         }
-        let resultOfMatches = state.name.match(regex) || (state.creationDate).toString().match(regex) || allMembers.match(regex) || (state.firstAlbum).toString().match(regex)
+        let resultOfMatches = data.name.match(regex) || (data.creationDate).toString().match(regex) || allMembers.match(regex) || (data.firstAlbum).toString().match(regex)
         return resultOfMatches
-
     });
-
-    let matches2 = states2.index.filter(state2 => {
-        const regex = new RegExp(`^${searchText}`, 'gi');
-
-        let allLocation = ""
-
-        for (let index = 0; index < state2.locations.length; index++) {
-            allLocation += state2.locations[index]
-        }
-        let resultLocations = allLocation.match(regex);
-        let resultData = JSON.stringify(resultLocations);
-        return resultData
-
-    });
+    // Si on efface notre recherche, remise à zéro de l'affichage HTML
     if (searchText.length === 0) {
         matches = [];
-        matches2 = [];
         matchList.innerHTML = '';
     }
-    outputHtml(matches, matches2);
+    // On renvoie les résultats
+    outputHtml(matches);
 }
 
-const outputHtml = (matches, matches2) => {
-
+// Mise en forme des résultats dans les cartes
+const outputHtml = (matches) => {
     if (matches.length > 0) {
         const html = matches.map(match => `
         <div class="card" id="card">
@@ -79,38 +63,21 @@ const outputHtml = (matches, matches2) => {
                 <button class="btn" type="button">Voir plus ...</button>
                 </div>
         </div>
-        
         `).join('');
-
-        /* const html2 = matches2.map(match2 => `
-        <div class="card" id="card">
-            <div class="card-header" id="card-header">
-            </div>
-                <div class="card-body" id="card-body">
-                    <div class="popup-header-cont">
-                    </div>
-                    <div class="read-more-cont">
-                        <p>${match2.locations}</p>
-                    </div>
-                <button class="btn" type="button">Voir plus ...</button>
-            </div>
-        </div>
-         `).join(''); */
-
-        /* console.log(html2) */
-        let finalhtml = html /* + html2 */ ;
-
+        // Transfert sur le HTML
+        let finalhtml = html;
         matchList.innerHTML = finalhtml;
     }
 }
 
-
-search.addEventListener('input', () => searchStates(search.value))
+// Mise à jour de la recherche à chaque caractère entré par l'utilisateur
+search.addEventListener('input', () => searchArtists(search.value))
 
 const cardData = document.querySelector(".row");
 const popup = document.querySelector(".popup-box");
 const popupCloseBtn = popup.querySelector(".popup-close-btn")
 
+// Création d'un évènement qui va afficher le contenu d'une API dans la pop-up lors d'un click
 cardData.addEventListener("click", async function(event) {
     if (event.target.tagName.toLowerCase() == "button") {
         const item = event.target.parentElement;
@@ -127,6 +94,7 @@ cardData.addEventListener("click", async function(event) {
     }
 })
 
+// Création d'un événement pour l'ouverture/fermeture de la pop-up
 popupCloseBtn.addEventListener("click", popupBox);
 
 popup.addEventListener("click", function(event) {
@@ -140,11 +108,14 @@ function popupBox() {
 }
 
 function elementAPI(elementJSON, relation) {
+    // Transformer le JSON en string
     let json = JSON.stringify(elementJSON.datesLocations)
+        //Analyse de la string créer précédemment
     let parseJSON = JSON.parse(json)
     let result = [];
     let index, resultpush
 
+    // Récupération de chaque clé et valeur du fichier JSON
     for (index in parseJSON) {
         resultpush = index + " : " + parseJSON[index]
         result.push(resultpush)

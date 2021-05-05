@@ -1,6 +1,8 @@
 let tabMarker = [];
 let marker;
 
+// Fonction qui va initialiser la map, et qui va pointer en premier lieu sur Ynov Nantes
+// Cette fonction va aussi permettre de faire pointer le marqueur sur un autre lieu grâce à la valeur entré dans l'input
 function initMap() {
     const newMarker = document.getElementById('search').value
         // Transforme les noms de villes en coordonnées GPS
@@ -31,11 +33,11 @@ function initMap() {
 
 }
 
-
+// Cette fonction va permettre de traduire un nom de ville en coordonnées GPS, permettant de géolocaliser un lieu.
 function geocodeAddress(geocoder, resultsMap) {
     const search = document.getElementById('search')
     geocoder.geocode({ address: search.value }, (results, status) => {
-        // Si L'API google est on va changer les coordonnées GPS 
+        // Si L'API google fonctionne, on va changer les coordonnées GPS 
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
             // On va recréer une map avec les nouvelles coordonnées GPS
@@ -53,6 +55,7 @@ function geocodeAddress(geocoder, resultsMap) {
 
 }
 
+// Fonction permettant de créer une petite fenêtre au-dessus du marqueur, lorsqu'on click sur le marqueur.
 function infoWindow(search, results) {
     search.value = results[0].formatted_address
     marker.info = new google.maps.InfoWindow({
@@ -63,5 +66,4 @@ function infoWindow(search, results) {
         this.info.open(map, marker);
     });
 
-    console.log(search.value)
 }
