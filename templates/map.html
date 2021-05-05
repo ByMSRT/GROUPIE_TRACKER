@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../static/css/mapv2.css" rel="stylesheet">
+    <link href="../static/css/map.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <script src="../static/js/map.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nova+Round&display=swap" rel="stylesheet">
@@ -39,9 +39,9 @@
 
         <div class="content">
             <h1>Groupie Tracker - Map</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique provident voluptatibus dolorum nulla porro! Architecto quasi, suscipit eius molestias ipsam ipsa animi qui vel nulla dicta culpa aliquid libero nostrum.</p>
+            <p>Effectuer votre recherche sur un lieu en particulier...</p>
             <div class="btn-group">
-                <a href="/search" class="color1">Découvrir les artistes !</a>
+                <a href="#map" class="color1">Découvrir les artistes !</a>
             </div>
         </div>
 
@@ -49,6 +49,7 @@
 
     </div>
 
+    <!-- Création de la recherche de lieux-->
     <div class="searchBox">
 
         <input class="searchInput" id="search" type="text" name="" placeholder="Votre recherche..." value="Nantes, France">
@@ -56,6 +57,8 @@
                 <i class="far fa-search"></i>
             </button>
     </div>
+
+    <!-- On va générer la map, grâce au fichier ../static/js/map.js -->
     <div class="contact-in">
         <div class="contact-map">
             <div id="map"></div>
@@ -69,6 +72,7 @@
 
 
 </body>
+<!-- Récupération de l'API de Google Map permettant de générer la map, ainsi que d'apporter des modifications dessus -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE7V4koSwqKCgcM7d1dHtm63ufUVHgpIA&callback=initMap&libraries=&v=weekly"></script>
 
 </html>
