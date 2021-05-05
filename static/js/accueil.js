@@ -16,7 +16,6 @@ async function data(url) {
     const dataArtist = await res_artist.json();
     // Appelle de function permettant la création de la carte avec son contenu mais aussi la création de la pop-up avec son contenu
     show(dataArtist);
-    setupPopup()
 }
 
 data(api + artist);
@@ -29,7 +28,7 @@ var tab; // Un tableau dans lequel on va mettre toutes les cartes des artistes �
 var ArrOfMembers; // Un tableau dans lequel est inscrit toutes les valeurs des checkbox pour savoir quel nombre de membre l'utilisateur veut.
 
 function show(dataArtist) {
-    if (dataArtist == undefined) { // dataArtist est undefined après utilisation d'un filtre donc on le redéfini s'il est undefined
+    if (dataArtist === undefined) { // dataArtist est undefined après utilisation d'un filtre donc on le redéfini s'il est undefined
         data(api + artist)
     }
     arr = []
@@ -79,7 +78,6 @@ function setupPopup() {
                 const relation = item.querySelector(".relation");
                 const pathPart = relation.dataset.url.split("/");
                 let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
-                console.log(res)
                 let data = await res.json();
                 elementAPI(data, relation);
                 const h3 = item.querySelector(".popup-header-cont").innerHTML;
@@ -273,3 +271,5 @@ function pagination(param) {
     }
     matchList.innerHTML = arrBis.join('');
 }
+
+setupPopup()
