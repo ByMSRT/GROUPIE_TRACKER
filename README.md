@@ -1,109 +1,89 @@
 # GROUPIE_TRACKER
 
+<img alt="Go" src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white"/><img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+<img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
 
-Travail de groupe :  Tao / Elouan / Kévin / Mathis
+Le projet **Groupie Tracker** consistait à recevoir une API donnée et manipuler les données qu'elle contenait. L'objectif étant de réaliser un site web et d'y afficher certaine donnée venant de l'API.
 
-Le lien du github de notre projet : https://github.com/ByMSRT/GROUPIE_TRACKER
+# Objectifs
 
+* Afficher les artistes :
+    * Nom du groupe
+    * Image
+    * Création du groupe
+    * Date du premier album
+    * Les noms des membres
 
-1) [Le projet](#projet)
-2) [Son intérêt](#interet)
-3) [Son utilisation](#utilisation)
-4) [Les détails de notre code](#detail)
-5) [La répartition du travail entre nous](#reparti)
-4) [Ce qu'on aurait pu améliorer](#ameliorer)
+    ![exemple](https://cdn.discordapp.com/attachments/826340732117712916/839429860706615306/Capture_decran_2021-05-05_a_11.14.18.png)
 
+* Recherche agit sur (Raffraichissement dynamique):
+    * Le nom du groupe
+    * La date de création
+    * Le nom des membres
+    * La date du premier album
 
-## Le projet : <a id="projet"></a>
+    ![exemple](https://cdn.discordapp.com/attachments/826340732117712916/839433027012657158/Capture_decran_2021-05-05_a_11.26.54.png)
 
+* Filtrage (Raffraichissement dynamique): 
+    * Avec un système de pagination en fonction du nombre de résultat afficher (10 max/pages & interaction avec le filtre)
 
-C'est un travail de groupe dans lequel nous avons dû coder en JavaScript, en Golang, en HTML et en CSS. Le but était de créer un site web permettant à n'importe quel individu, de rechercher des informations sur le groupe de musique de leur choix. La liste des groupes avec leurs informations est stocké dans un fichier JSON qu'il fallait parcourir afin de réutiliser les informations. Nous avions 3 semaines pour réaliser le maximum de fonctions demandés parmis celle-ci :
-
-- ***Fetching the Data***   
-    - L'utilisation d'un API pour le site web.
-- ***Display***
-    - Affichage des informations avec le choix du nombre de résultats afficher sur la page et un système de navigation entre les pages.
-- ***Search***
-    - Recherche interactives des héros via leurs noms.
-- ***Sort***
-    - Un tri dans l'ordre croissant ou décroissant des héros par rapport à la caractéristique choisi.
-- ***Speed*** 
-    - Enfin, le site ne doit pas être trop charger et lent. Nous sommes des vilains et nous agissons rapidement.
-
-
-## Son intérêt : <a id="interet"></a>
-
-
-Lorsqu'on a des concerts auxquels on souhaite assister, on ne peut pas se permettre de perdre son temps à chercher n'importe où sur internet! Ce site permet de remédier à cette entrave, et fait gagner beaucoup de temps à nous autres, fans de musique. Il nous permet de retrouver des groupes en fonction de: leur nom, leur date de création, le nom de leurs membres, et la date de sortie de leur premier album !
-De plus, si vous souhaitez vous préparer pour le prochain concert de votre groupe numéro 1, mais que vous avez besoin d'informations sur la sate et le lieu, et bien c'est possible, grâce aux informations répertoriés sur le site, en plus de la carte qui y est intégrée !
+        * La date de création du groupe (Select input)
+        * Le nombre de membre dans le groupe (CheckBox)
+        * La date du premier album (Range filter)
+        
+![exemple](https://cdn.discordapp.com/attachments/826340732117712916/839431747250683914/Capture_decran_2021-05-05_a_11.21.42.png)
 
 
-## Son utilisation : <a id="utilisation"></a>
+* Géolocalisation
 
+    * Google Maps API
+        * Maps JavaScript API
+        * Géocoding API
 
-Notre site est créé de manière ergonomique et simple à prendre en main.
+    *Le service peut-être amené à être interrompu (Version d'essai)*
 
-Une fois arrivé sur le site, vous pouvez comme bon vous semble monter et descendre dans la liste des des groupes pour connaitres leurs caractéristiques 
-![image](https://media.discordapp.net/attachments/408320873876160522/839029999205613578/unknown.png?width=1440&height=635)
+* Séparation en page de nagivation
 
-En revanche, si vous souhaitez faire des recherches plus ciblés, cliquez sur les différentes options qui vous intéresse:
+* Gestion des erreurs
 
-![image](https://cdn.discordapp.com/attachments/408320873876160522/839029623617617930/unknown.png)
+    * Erreur 404
+    * Erreur 500
 
-Ensuite, choisissez le numéro de la page que vous souhaiter vérifier, dans le cas où il y aurait trop de résultats:
-![image](https://cdn.discordapp.com/attachments/826340732117712916/839033588153581588/unknown.png)
+![error](https://cdn.discordapp.com/attachments/826340732117712916/839427272390082560/Capture_decran_2021-05-05_a_11.04.03.png)
 
-Et voila, vous avez maintenant toute les informations que vous désirez !
+# Pour commencer
 
-![image](https://cdn.discordapp.com/attachments/408320873876160522/839033994502471710/unknown.png)
+Tout d'abord, pour tester notre site web, veillez à télécharger l'intégralité du dossier **GROUPIE_TRACKER**. Une fois cela fait, rendez-vous sur *Visual Studio Code 2*. 
 
+## Lancement du serveur
 
-## Les détails de notre code : <a id="detail"></a>
+Pour lancer le serveur, il vous suffit d'utiliser la commande suivante dans votre terminal : ``go run main.go``. 
 
-Notre code se compose en 4 parties : la partie html, la partie css, la partie go, et la partie js. Les voici expliquées avec plus de détails :
+*⚠️ Pour les utilisateurs Mac possédant une erreur lors de l'éxécution de cette commande, suivez les instructions suivantes dans votre terminal :*
 
-----------------------------------pas modifié-----------------------------------------------------
+- ``env GO111MODULE=off go build main.go``
+- ``./main``
 
-index.html : Ce fichier permet de donner l'apparence voulue au site. 
+Une fois le serveur lancé, des logs apparaissent dans votre terminal en couleur. Vous pouvez cliquer directement sur votre terminal pour ouvrir la page web ou [ici](http://localhost:8000).
+![log](https://cdn.discordapp.com/attachments/826340732117712916/839426124756025344/Capture_decran_2021-05-05_a_10.58.49.png)
 
+*Des erreurs peuvent être présente sous cette forme :*
+![error](https://cdn.discordapp.com/attachments/826340732117712916/839427272390082560/Capture_decran_2021-05-05_a_11.04.03.png)
 
-style.css : Stylisé la page web.
+# Versions
 
+* 1.0 - Release 05/05/21
 
-main.js : 
+# Auteurs
 
+* Elouan DUMONT - [@ByMSRT](https://github.com/ByMSRT)
+* Kévin GUYODO - [@kevinguyodo](https://github.com/kevinguyodo)
+* Mathis VERON - [@mveron13](https://github.com/mveron13)
+* Tao BOURMAUD - [@taobourmaud](https://github.com/taobourmaud)
 
-* function SizeDefault : sa présence fait en sorte que le nombre de résultat affiché par défault soit toujours le même (ici 20)
+# Développement avec 
 
-* function SizePage : elle permet de changer le nombre de résultats affiché
-
-* function sort : elle permet a l'utilisateur de pouvoir ranger les résultat par ordre voulu (ordre alphabétique ou numérique de la colonne voulue)
-
-* function item : fonction qui fait fonctionner sort en récupèrant la colonne voulu pour trier dessus.
-
-
-
-
-## La répartition du travail entre nous : <a id="reparti"></a>
-
-Sort : Mathis et Kevin
-
-Fetch : Mathis et Kevin
-
-Search : Tao et Elouan
-
-Display : Tao et Elouan
-
-HTML & CSS : Kévin et Elouan
-
-README : Mathis et Tao
-
-----------------------------------pas modifié-----------------------------------------------------
-
-## Ce qu'on aurait pu améliorer : <a id="ameliorer"></a>
-
-* Le filter en go, permettant d'éviter les requettes trop grosses
-
-* La recherche en go
-
-* La map
+<img alt="Go" src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white"/><img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+<img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
