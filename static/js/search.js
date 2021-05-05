@@ -125,3 +125,7 @@ function elementAPI(elementJSON, relation) {
     relation.innerHTML = result.join(', ')
 
 }
+
+function redirectMap() {
+    window.location.replace("/map")
+}
