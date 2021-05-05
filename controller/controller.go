@@ -9,36 +9,56 @@ import (
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/" {
+		codeErreur(w, r, 404, "Page not found")
+		return
+	}
+
 	//Analyse du fichier accueil.html
 	custTemplate, err := template.ParseFiles("./templates/accueil.html")
 
 	if err != nil {
 		//Gestion d'erreur
-		codeErreur(w, r, 404, "Template not found : accueil.html")
+		codeErreur(w, r, 500, "Template not found : accueil.html")
 		return
 	}
+
 	// Exécution de la d'accueil.html si il n'y a aucune erreur
 	err = custTemplate.Execute(w, nil)
 }
 
 func Map(w http.ResponseWriter, r *http.Request) {
 
+	if r.URL.Path != "/map" {
+		codeErreur(w, r, 404, "Page not found")
+		return
+	}
+
 	custTemplate, err := template.ParseFiles("./templates/map.html")
 
 	if err != nil {
-		codeErreur(w, r, 404, "Template not found : map.html")
+		codeErreur(w, r, 500, "Template not found : map.html")
 		return
 	}
+
 	err = custTemplate.Execute(w, nil)
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/search" {
+		codeErreur(w, r, 404, "Page not found")
+		return
+	}
+
 	custTemplate, err := template.ParseFiles("./templates/search.html")
 
 	if err != nil {
-		codeErreur(w, r, 404, "Template not found : search.html")
+		codeErreur(w, r, 500, "Template not found : search.html")
 		return
 	}
+
 	err = custTemplate.Execute(w, nil)
 }
 

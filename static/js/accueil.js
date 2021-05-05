@@ -79,6 +79,7 @@ function setupPopup() {
                 const relation = item.querySelector(".relation");
                 const pathPart = relation.dataset.url.split("/");
                 let res = await fetch(`/api/relation/${pathPart[pathPart.length-1]}`);
+                console.log(res)
                 let data = await res.json();
                 elementAPI(data, relation);
                 const h3 = item.querySelector(".popup-header-cont").innerHTML;
@@ -112,6 +113,7 @@ function elementAPI(elementJSON, relation) {
         result.push(resultpush)
 
     }
+    
     relation.innerHTML = result.join(', ')
 
 }
