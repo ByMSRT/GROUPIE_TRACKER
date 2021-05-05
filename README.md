@@ -4,7 +4,7 @@
 <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
 <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
 
-Le projet **Groupie Tracker** consistait à recevoir une API donnée et manipuler les données qu'elle contenait. L'objectif étant de réaliser un site web et d'y afficher certaine donnée venant de l'API.
+Le projet **Groupie Tracker** consistait à recevoir une API donnée et manipuler les données qu'elle contenait. L'objectif étant de réaliser un site web et d'y afficher un certain nombre de donnée venant de l'API.
 
 # Objectifs
 
