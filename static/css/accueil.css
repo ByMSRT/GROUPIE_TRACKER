@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-h1 {
-    color: red;
-=======
 #Card {
     display: flex; 
     height: 450px;
@@ -64,5 +60,4 @@ h1 {
 
 a {
     color: white;
->>>>>>> 8671335c3f4c6096a4f996645d498fa7e1a20212
 }
